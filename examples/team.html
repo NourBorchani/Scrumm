@@ -56,14 +56,14 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="./projects.html">
               <i class="material-icons">card_giftcard</i>
               <p>Projects</p>
             </a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="./team.html">
+          <li class="nav-item active">
+              <a class="nav-link" href="./projects.html">
                 <i class="material-icons">people</i>
                 <p>Team</p>
               </a>
@@ -124,7 +124,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Manage My Projects</a>
+            <a class="navbar-brand" href="#pablo">Manage My Team</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -190,137 +190,25 @@
         <div class="container-fluid">
            
           <div class="row">
-             <!-- project list -->
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header card-header-success">
-                      <h4 class="card-title">My Projects</h4>
-                      <p class="card-category"></p>
-                    </div>
-                    <div class="card-body table-responsive">
-                        <table class="table table-hover">
-                          <thead class="text-warning">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Start Date</th>
-                            <th>Client</th>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>1</td>
-                              <td>First Project</td>
-                              <td>23/12/2018</td>
-                              <td>Ramses</td>
-                            </tr>
-                            <tr>
-                              <td>2</td>
-                              <td>Minerva Hooper</td>
-                              <td>$23,789</td>
-                              <td>Curaçao</td>
-                            </tr>
-                          
-                          </tbody>
-                        </table>
-                      </div>
-              </div>
-            </div>
-          </div>
-          <!-- end project list -->
-
-           <!-- add project -->
-           <div class="row">
-              <div class="col-md-12">
-                  <div class="card">
-                    <div class="card-header card-header-warning">
-                      <h4 class="card-title">Add New Project</h4>
-                      <p class="card-category"></p>
-                    </div>
-                    <div class="card-body">
-                      <form>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label class="bmd-label-floating">Project Name</label>
-                              <input type="text" class="form-control" >
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="bmd-label-floating">Client</label>
-                                <input type="text" class="form-control" >
-                              </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label class="bmd-label-floating">Description</label>
-                              <input type="text" class="form-control">
-                            </div>
-                          </div>
-                         
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label class="bmd-label-floating">Technology</label>
-                              <input type="text" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                              <label class="bmd-label-floating">Start Date</label>
-                            <div class="form-group">
-                              
-                              <input type="date" class="form-control">
-                            </div>
-                          </div>
-                          
-                        </div>
-                       
-                       
-                        <button type="submit" class="btn btn-primary pull-right" style="background-color: #ff9100 ;" onclick="addProject()">Add Project</button>
-                        <div class="clearfix"></div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-
-          
-              
-            <!-- end add project -->
-          </div>
-            <!-- list project -->
-            <div class="row">
-
-            </div>
-            <!-- end list project -->
-          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Project Details</h4>
-                  <p class="card-category">Edit your Project</p>
+                  <h4 class="card-title">Developers</h4>
+                  <p class="card-category"></p>
                 </div>
                 <div class="card-body">
                   <form>
                     <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Company (disabled)</label>
-                          <input type="text" class="form-control" disabled>
-                        </div>
-                      </div>
-                      <div class="col-md-3">
+                      
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Username</label>
                           <input type="text" class="form-control">
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Email address</label>
+                          <label class="bmd-label-floating">Email Address</label>
                           <input type="email" class="form-control">
                         </div>
                       </div>
@@ -328,23 +216,28 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Fist Name</label>
-                          <input type="text" class="form-control">
+                          <label class="bmd-label-floating">Password</label>
+                          <input type="password" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control">
+                          <label class="bmd-label-floating">Confirm Password</label>
+                          <input type="password" class="form-control">
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
+                        <form class="form-inline">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Adress</label>
-                          <input type="text" class="form-control">
+                          <label class="bmd-label-floating">Role</label>
+                          <a href="">Developer</a>
+                          <input type="radio" name="role" value="designer" class="form-control">Designer
+                          <input type="radio" name="role" value="tester" class="form-control">Tester
+                          <input type="radio" name="role" value="scrum" class="form-control">Scrum Master
                         </div>
+                      </form>
                       </div>
                     </div>
                     <div class="row">
@@ -384,7 +277,29 @@
                 </div>
               </div>
             </div>
-           
+            <!-- add developer -->
+            <div class="col-md-4">
+              <div class="card card-profile">
+                <div class="card-avatar">
+                  <a href="#pablo">
+                    <img class="img" src="../assets/img/faces/developer.png" />
+                  </a>
+                </div>
+                <div class="card-body">
+                  <h6 class="card-category text-gray">Add new developer to the team</h6></br>
+                 
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Email address</label>
+                    <input type="email" class="form-control">
+                  </div>
+                  <!-- <p class="card-description">
+                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                  </p> -->
+                  <a href="#pablo" class="btn btn-primary btn-round">Add</a>
+                </div>
+              </div>
+            </div>
+            <!-- end add developer -->
           </div>
         </div>
       </div>
