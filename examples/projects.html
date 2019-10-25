@@ -182,6 +182,113 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
+           
+          <div class="row">
+             <!-- project list -->
+          <div class="col-md-6">
+              <div class="card ">
+                  <div class="card-header card-header-success">
+                      <h4 class="card-title">My Projects</h4>
+                      <p class="card-category"></p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                          <thead class="text-warning">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Start Date</th>
+                            <th>Client</th>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1</td>
+                              <td>First Project</td>
+                              <td>23/12/2018</td>
+                              <td>Ramses</td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>Minerva Hooper</td>
+                              <td>$23,789</td>
+                              <td>Curaçao</td>
+                            </tr>
+                          
+                          </tbody>
+                        </table>
+                      </div>
+              </div>
+            </div>
+          
+          <!-- end project list -->
+
+           <!-- add project -->
+              <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header card-header-warning">
+                      <h4 class="card-title">Add New Project</h4>
+                      <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                      <form>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Project Name</label>
+                              <input type="text" class="form-control" >
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="bmd-label-floating">Client</label>
+                                <input type="text" class="form-control" >
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Description</label>
+                              <input type="text" class="form-control">
+                            </div>
+                          </div>
+                         
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="bmd-label-floating">Technology</label>
+                              <input type="text" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                              <label class="bmd-label-floating">Start Date</label>
+                            <div class="form-group">
+                              
+                              <input type="date" class="form-control">
+                            </div>
+                          </div>
+                          
+                        </div>
+                       
+                       
+                        <button type="submit" class="btn btn-primary pull-right" onclick="addProject()">Add Project</button>
+                        <div class="clearfix"></div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+          
+              
+            <!-- end add project -->
+          </div>
+            <!-- list project -->
+            <div class="row">
+
+            </div>
+            <!-- end list project -->
           <div class="row">
             <div class="col-md-8">
               <div class="card">
@@ -621,6 +728,9 @@
       md.initDashboardPageCharts();
 
     });
+    function addProject(){
+
+    }
   </script>
 </body>
 
