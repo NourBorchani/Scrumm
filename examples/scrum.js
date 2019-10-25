@@ -29,7 +29,7 @@ function displayTask() {
            <span>${todoTable[i].task}</span>
         
            <div class="margin-top-10">
-             <button class="button button-backlog"><small>Backlog</small></button><button class="button button-progress"><small>In Progress</small></button><button class="button button-progress"><small>In Review</small></button><button class="button button-done"><small>Done</small></button><br><button type="button" onclick='deleteTask(${i},${todoTable[i].id},)' class="button button-delete"><small>Delete</small></button>
+             <button class="button button-backlog">Backlog</button><button class="button button-progress">In Progress</button><button class="button button-progress">In Review</button><button class="button button-done">Done</button><br><button type="button" onclick='deleteTask(${i},${todoTable[i].id},)' class="button button-delete">Delete</button>
            </div>
            </div>`
     }
@@ -38,7 +38,7 @@ function displayTask() {
 
 }
 function deleteTask(index,id) {
-    var conf = confirm("Press a button!");
+    var conf = confirm("Is This goodbye");
     if (conf) {
     var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
             
