@@ -22,6 +22,7 @@ function displayTask() {
 
    displayBacklog();
    displayInProgress();
+   displayInReview();
    displayDone();
 
     
@@ -35,17 +36,18 @@ function displayBacklog()
       {
           console.log(todoTable);
 
-          html += `<div class="input-group overflow">
-         <span>${todoTable[i].task}</span>
-      
-         <div class="margin-top-10">
-           <button class="button button-backlog"><small>Backlog</small></button>
-           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'><small>In Progress</small></button>
-           <button class="button button-progress"><small>In Review</small></button>
+          html += `<div class="card">
+          <div class="card-header card-header-info">
           
-           <br>
-           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete"><small>Delete</small></button>
-           <button class="button button-backlog" id="edit" onclick="Edit()">Edit</button>             
+         <h4>${todoTable[i].task}</h4>
+         
+         </div>
+         <div class="card-body">
+      
+           <button class="button button-progress" style="font-weight: gras" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+        
+           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
+                    
 
          </div>
          </div>`
@@ -63,17 +65,20 @@ function displayInProgress()
       {
           console.log(todoTable);
 
-          html += `<div class="input-group overflow">
-         <span>${todoTable[i].task}</span>
+          html += `<div class="card">
+          <div class="card-header card-header-warning">
+          
+         <h4>${todoTable[i].task}</h4>
+         
+         </div>
+         <div class="card-body">
+           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
       
-         <div class="margin-top-10">
-           <button class="button button-backlog"><small>Backlog</small></button>
-      
-           <button class="button button-progress"><small>In Review</small> </button>
-          <button class="button button-done" onclick='moveDone(${todoTable[i].id})'><small>Done</small></button>
+           <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
+          
            <br>
-           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete"><small>Delete</small></button>
-           <button class="button button-backlog" id="edit" onclick="Edit()">Edit</button>             
+           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
+                      
 
          </div>
          </div>`
@@ -81,26 +86,59 @@ function displayInProgress()
   }
   document.getElementById('tasksInprogress').innerHTML = html;
 }
-function displayDone()
+function displayInReview()
 {
   var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-  var html =`<h3>Done </h3>`;
+  var html =`<h3>InReview </h3>`;
   for (let i = 0; i < todoTable.length; i++) {
-      if (todoTable[i].etat=="Done")
+      if (todoTable[i].etat=="InReview")
       {
           console.log(todoTable);
 
-          html += `<div class="input-group overflow">
-         <span>${todoTable[i].task}</span>
-      
-         <div class="margin-top-10">
-           <button class="button button-backlog"><small>Backlog</small></button>
-           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'><small>In Progress</small></button>
-           <button class="button button-progress"><small>In Review</small>
-           </button><button class="button button-done"><small>Done</small></button>
+          html += `<div class="card">
+          <div class="card-header card-header-danger">
+         <h4>${todoTable[i].task}</h4>
+         </div>
+         <div class="card-body">
+         
+           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})' >Backlog</button>
+           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+           <button class="button button-done" onclick='moveDone(${todoTable[i].id})'>Done</button>
+           
            <br>
-           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete"><small>Delete</small></button>
-           <button class="button button-backlog" id="edit" onclick="Edit()">Edit</button>             
+           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
+                     
+
+         </div>
+         </div>`
+        }
+  }
+  document.getElementById('tasksInreview').innerHTML = html;
+}
+function displayDone()
+{
+  
+  var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+  var html =`<h3>Done </h3>`;
+  for (let i = 0; i < todoTable.length; i++) {
+      if (todoTable[i].etat=="done")
+      {
+          console.log(todoTable);
+
+          html += `<div class="card">
+          <div class="card-header card-header-success">
+         <h4>${todoTable[i].task}</h4>
+         </div>
+      
+      
+         <div class="card-body">
+           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
+      
+           <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
+           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+           <br>
+           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
+                     
 
          </div>
          </div>`
@@ -127,6 +165,22 @@ function deleteTask(id) {
     }
 
      // 
+     function moveBacklog (id)
+     {
+      var task = document.getElementById('task').value;
+      console.log(id);
+      var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+      for (let i=0;i<todoTable.length;i++)
+      {
+        if (todoTable[i].id==id)
+        {
+          todoTable[i].etat="backlog";
+        }
+      }
+      localStorage.setItem('tasks', JSON.stringify(todoTable));
+      displayTask()
+     }   
+
      function moveInprogress (id )
      {
       var task = document.getElementById('task').value;
@@ -152,14 +206,42 @@ function deleteTask(id) {
       {
         if (todoTable[i].id==id)
         {
-          todoTable[i].etat="Done";
+          todoTable[i].etat="done";
         }
       }
       localStorage.setItem('tasks', JSON.stringify(todoTable));
       displayTask()
-     }          
+     }  
+     function moveDone (id )
+     {
+      var task = document.getElementById('task').value;
+      var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+      for (let i=0;i<todoTable.length;i++)
+      {
+        if (todoTable[i].id==id)
+        {
+          todoTable[i].etat="done";
+        }
+      }
+      localStorage.setItem('tasks', JSON.stringify(todoTable));
+      displayTask()
+     }   
+     function moveInReview (id )
+     {
+      var task = document.getElementById('task').value;
+      var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+      for (let i=0;i<todoTable.length;i++)
+      {
+        if (todoTable[i].id==id)
+        {
+          todoTable[i].etat="InReview";
+        }
+      }
+      localStorage.setItem('tasks', JSON.stringify(todoTable));
+      displayTask()
+     }             
 
-    // function edit user story 
+    /* function edit user story 
     function Edit(){
         // Get the modal
       var modal = document.getElementById("myModal");
@@ -186,4 +268,4 @@ function deleteTask(id) {
           modal.style.display = "none";
         }
       }
-      }
+      }*/
