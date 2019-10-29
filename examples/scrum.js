@@ -10,7 +10,8 @@ if (task =="")
 console.log(task);
 var todo = {
     id: Math.floor((Math.random() * 1000) + 1),
-    task: task,  
+    task: task, 
+    etat: "backlog" ,
 }
 todoTable.push(todo)
 localStorage.setItem('tasks', JSON.stringify(todoTable));
@@ -19,27 +20,95 @@ displayTask()
 
 function displayTask() {
 
-    var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-    var html =`<h3>Sprint Backlog</h3>`;
-    for (let i = 0; i < todoTable.length; i++) {
-        
-            console.log(todoTable);
+   displayBacklog();
+   displayInProgress();
+   displayDone();
 
-            html += `<div class="input-group overflow">
-           <span>${todoTable[i].task}</span>
-        
-           <div class="margin-top-10">
-             <button class="button button-backlog"><small>Backlog</small></button><button class="button button-progress"><small>In Progress</small></button><button class="button button-progress"><small>In Review</small></button><button class="button button-done"><small>Done</small></button><br><button type="button" onclick='deleteTask(${i},${todoTable[i].id},)' class="button button-delete"><small>Delete</small></button>
-                <button class="button button-backlog" id="edit" onclick="Edit()">Edit</button>             
-
-           </div>
-           </div>`
-    }
-    // console.log(html);
-    document.getElementById('divTasks').innerHTML = html;
-
+    
 }
-function deleteTask(index,id) {
+function displayBacklog()
+{
+  var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+  var html =`<h3>Sprint Backlog</h3>`;
+  for (let i = 0; i < todoTable.length; i++) {
+      if (todoTable[i].etat=="backlog")
+      {
+          console.log(todoTable);
+
+          html += `<div class="input-group overflow">
+         <span>${todoTable[i].task}</span>
+      
+         <div class="margin-top-10">
+           <button class="button button-backlog"><small>Backlog</small></button>
+           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'><small>In Progress</small></button>
+           <button class="button button-progress"><small>In Review</small></button>
+          
+           <br>
+           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete"><small>Delete</small></button>
+           <button class="button button-backlog" id="edit" onclick="Edit()">Edit</button>             
+
+         </div>
+         </div>`
+        }
+  }
+  document.getElementById('divTasks').innerHTML = html;
+}
+
+function displayInProgress()
+{
+  var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+  var html =`<h3>In progress </h3>`;
+  for (let i = 0; i < todoTable.length; i++) {
+      if (todoTable[i].etat=="inProgress")
+      {
+          console.log(todoTable);
+
+          html += `<div class="input-group overflow">
+         <span>${todoTable[i].task}</span>
+      
+         <div class="margin-top-10">
+           <button class="button button-backlog"><small>Backlog</small></button>
+      
+           <button class="button button-progress"><small>In Review</small> </button>
+          <button class="button button-done" onclick='moveDone(${todoTable[i].id})'><small>Done</small></button>
+           <br>
+           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete"><small>Delete</small></button>
+           <button class="button button-backlog" id="edit" onclick="Edit()">Edit</button>             
+
+         </div>
+         </div>`
+        }
+  }
+  document.getElementById('tasksInprogress').innerHTML = html;
+}
+function displayDone()
+{
+  var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+  var html =`<h3>Done </h3>`;
+  for (let i = 0; i < todoTable.length; i++) {
+      if (todoTable[i].etat=="Done")
+      {
+          console.log(todoTable);
+
+          html += `<div class="input-group overflow">
+         <span>${todoTable[i].task}</span>
+      
+         <div class="margin-top-10">
+           <button class="button button-backlog"><small>Backlog</small></button>
+           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'><small>In Progress</small></button>
+           <button class="button button-progress"><small>In Review</small>
+           </button><button class="button button-done"><small>Done</small></button>
+           <br>
+           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete"><small>Delete</small></button>
+           <button class="button button-backlog" id="edit" onclick="Edit()">Edit</button>             
+
+         </div>
+         </div>`
+        }
+  }
+  document.getElementById('tasksInDone').innerHTML = html;
+}
+function deleteTask(id) {
     var conf = confirm("Is This goodbye");
     if (conf) {
     var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -54,15 +123,41 @@ function deleteTask(index,id) {
             return true;
         }
     }    
-    return false;   }
-    
-    function inReview(){
-    var etat={}
+    return false;   }  
+    }
 
-    
-    }}
+     // 
+     function moveInprogress (id )
+     {
+      var task = document.getElementById('task').value;
+      var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+      for (let i=0;i<todoTable.length;i++)
+      {
+        if (todoTable[i].id==id)
+        {
+          todoTable[i].etat="inProgress";
+        }
+      }
+      localStorage.setItem('tasks', JSON.stringify(todoTable));
+      displayTask()
+     }   
 
-            
+
+     //
+     function moveDone (id )
+     {
+      var task = document.getElementById('task').value;
+      var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+      for (let i=0;i<todoTable.length;i++)
+      {
+        if (todoTable[i].id==id)
+        {
+          todoTable[i].etat="Done";
+        }
+      }
+      localStorage.setItem('tasks', JSON.stringify(todoTable));
+      displayTask()
+     }          
 
     // function edit user story 
     function Edit(){
