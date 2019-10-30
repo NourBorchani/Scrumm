@@ -22,7 +22,7 @@
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body onload="teamDisplay()">
+<body>
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
@@ -49,11 +49,11 @@
             </a>
           </li>
           <li class="nav-item">
-                <a class="nav-link" href="./profiles.html">
-                  <i class="material-icons">portrait</i>
-                  <p>Profiles</p>
-                </a>
-              </li>
+            <a class="nav-link" href="./profiles.html">
+              <i class="material-icons">portrait</i>
+              <p>Profiles</p>
+            </a>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="./teams.html">
               <i class="material-icons">people</i>
@@ -69,7 +69,8 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Manage My Team</a>
+            <h4 class="navbar-brand">Manage My Teams <a class="navbar-brand" href="#addTeam" onclick="addTeamDisplay()">
+                <i class="material-icons" style="text-align: right;">add_circle_outline</i></a> </h4>
           </div>
         </div>
       </nav>
@@ -79,18 +80,34 @@
           <div class="row" id="divDisplayTeam">
             <!-- team list -->
             <div class="col-md-12">
-              <div class="card" >
+              <div class="card">
                 <div class="card-header card-header-success">
-                  <h4 class="card-title">My Teams<a href="#addTeam" onclick="addTeamDisplay()">
-                      <i class="material-icons" style="text-align: right;">add_circle_outline</i></a></h4>
+
+                  <h4 class="card-title" style="text-align: right;"> Team1
+                    <a href="#editTeam" onclick="" class="btn btn-primary btn-link btn-sm">
+
+                      <i class="material-icons">edit</i></a>
+                    <a href="#removeTeam" onclick="" class="btn btn-danger btn-link btn-sm">
+
+
+                      <i class="material-icons">close</i></a>
+
+                  </h4>
+
                 </div>
                 <div class="card-body table-responsive">
-                  <table class="table table-hover">
+                  
+                  <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search for profiles.."
+                    title="Type in a name">
+
+                  
+                  <table class="table table-hover" id="divTeam">
                     <thead class="text-warning">
                       <th>ID</th>
                       <th>Email</th>
                       <th>Project</th>
                       <th>Role</th>
+                      <th></th>
                     </thead>
                     <tbody>
                       <tr onclick="editTeamDisplay()">
@@ -98,12 +115,28 @@
                         <td>Salma</td>
                         <td>Scrumy</td>
                         <td>Developer</td>
+                        <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
                       </tr>
                       <tr>
                         <td>2</td>
                         <td>Jassem</td>
                         <td>Scrumy</td>
                         <td>Developer</td>
+                        <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">edit</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
                       </tr>
 
                     </tbody>
@@ -112,65 +145,101 @@
               </div>
             </div>
           </div>
-          <!-- end project list -->
+          <!-- end display team list -->
 
-          <!-- add project -->
+          <!-- add team  
+                          display list of developers and choose from it to create a team
+                          we add the details of affecting a team to a certain project  
+                        -->
           <div class="row" id="divAddTeam">
-            <div class="col-md-12">
-              <div class="card" >
-                <div class="card-header card-header-warning">
-                  <h4 class="card-title">Add New Team</h4>
-                  <p class="card-category"></p>
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                  <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                      <span class="nav-tabs-title">Roles</span>
+                      <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#profile" data-toggle="tab">
+                            <i class="material-icons">code</i> Developers
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#messages" data-toggle="tab">
+                            <i class="material-icons">color_lens</i> Designers
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#settings" data-toggle="tab">
+                            <i class="material-icons">scatter_plot</i> Other
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-body">
-                  <form>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Team Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Client</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="profile">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Sign contract for "What are conference organizers afraid of?"</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task"
+                                class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Description</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Technology</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="bmd-label-floating">Start Date</label>
-                        <div class="form-group">
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Employees Stats</h4>
+                  <p class="card-category">New employees on 15th September, 2016</p>
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Salary</th>
+                      <th>Country</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Dakota Rice</td>
+                        <td>$36,738</td>
+                        <td>Niger</td>
+                      </tr>
 
-                          <input type="date" class="form-control">
-                        </div>
-                      </div>
-
-                    </div>
-
-
-                    <button type="submit" class="btn btn-primary pull-right" style="background-color: #ff9100 ;"
-                      onclick="addTeam()">Add Team</button>
-                    <div class="clearfix"></div>
-                  </form>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -180,11 +249,11 @@
             <!-- end add project -->
           </div>
           <!-- list project -->
-          <div class="row">
+          <!-- <div class="row">
 
-          </div>
+          </div> -->
           <!-- end list project -->
-          <div class="row"  id="divEditTeam">
+          <!-- <div class="row"  id="divEditTeam">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
@@ -274,8 +343,8 @@
               </div>
             </div>
 
-          </div>
-          <div class="row">
+          </div> -->
+          <!-- <div class="row">
             <div class="col-md-8">
               <div class="card">
                 <div class="card-header card-header-success">
@@ -327,8 +396,8 @@
                           </div>
                         </form>
                       </div>
-                    </div>
-                    <div class="row">
+                    </div> -->
+          <!-- <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">City</label>
@@ -365,9 +434,9 @@
                   </form>
                 </div>
               </div>
-            </div>
-            <!-- add developer -->
-            <div class="col-md-4">
+            </div> -->
+          <!-- add developer -->
+          <!-- <div class="col-md-4">
               <div class="card card-profile">
                 <div class="card-avatar">
                   <a href="#pablo">
@@ -384,54 +453,54 @@
                     <label class="bmd-label-floating">Email address</label>
                     <input type="email" class="form-control">
                   </div>
-                  <!-- <p class="card-description">
+                  < <p class="card-description">
                     Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                  </p> -->
+                  </p> 
                   <a href="#pablo" class="btn btn-primary btn-round">Add</a>
                 </div>
               </div>
-            </div>
-            <!-- end add developer -->
-          </div>
+            </div> -->
+          <!-- end add developer -->
+        </div>
 
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container-fluid">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                SCRUMY
+              </a>
+            </li>
+            <li>
+              <a href="https://creative-tim.com/presentation">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="http://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script>, made with <i class="material-icons">favorite</i> by
+          <a href="https://www.creative-tim.com" target="_blank">SCRUMY</a> for a better web.
         </div>
       </div>
-      <footer class="footer">
-        <div class="container-fluid">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com">
-                  SCRUMY
-                </a>
-              </li>
-              <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">SCRUMY</a> for a better web.
-          </div>
-        </div>
-      </footer>
-    </div>
+    </footer>
+  </div>
   </div>
   <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
@@ -544,21 +613,21 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script>
-    function editTeamDisplay() {
-      document.getElementById("divDisplayTeam").style.display = "none";
-      document.getElementById("divAddTeam").style.display = "none";
-      document.getElementById("divEditTeam").style.display = "block";
-    }
-    function addTeamDisplay() {
-      document.getElementById("divEditTeam").style.display = "none";
-      document.getElementById("divDisplayTeam").style.display = "none";
-      document.getElementById("divAddTeam").style.display = "block";
-    }
-    function teamDisplay() {
-      document.getElementById("divAddTeam").style.display = "none";
-      document.getElementById("divEditTeam").style.display = "none";
-      document.getElementById("divDisplayTeam").style.display = "block";
-    }
+    // function editTeamDisplay() {
+    //   document.getElementById("divDisplayTeam").style.display = "none";
+    //   document.getElementById("divAddTeam").style.display = "none";
+    //   // document.getElementById("divEditTeam").style.display = "block";
+    // }
+    // function addTeamDisplay() {
+    //   // document.getElementById("divEditTeam").style.display = "none";
+    //   document.getElementById("divDisplayTeam").style.display = "none";
+    //   document.getElementById("divAddTeam").style.display = "block";
+    // }
+    // function teamDisplay() {
+    //   document.getElementById("divAddTeam").style.display = "none";
+    //   // document.getElementById("divEditTeam").style.display = "none";
+    //   document.getElementById("divDisplayTeam").style.display = "block";
+    // }
     $(document).ready(function () {
       $().ready(function () {
         $sidebar = $('.sidebar');
@@ -689,9 +758,29 @@
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
     });
-    function addProject() {
-    }
+
   </script>
+  <!-- search for developer in to add to the team  -->
+  <script>
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("divDevelopers");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    </script>
 </body>
 
 </html>

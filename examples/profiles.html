@@ -37,7 +37,7 @@
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body onload="displayCrow()">
+<body onload="displayCrew()">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
@@ -71,11 +71,11 @@
             </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="./teams.html">
-                <i class="material-icons">people</i>
-                <p>Teams</p>
-              </a>
-            </li>
+            <a class="nav-link" href="./teams.html">
+              <i class="material-icons">people</i>
+              <p>Teams</p>
+            </a>
+          </li>
 
         </ul>
       </div>
@@ -85,25 +85,30 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Manage My Crow</a>
+            <a class="navbar-brand" href="#pablo">Manage My Crew</a>
           </div>
         </div>
       </nav>
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          
+
 
           <!-- developer details -->
           <div class="row">
             <div class="col-md-8">
-              <div class="card" id="divDisplayCrow">
+              <div class="card" id="divDisplayCrew">
                 <div class="card-header card-header-success">
-                  <h4 class="card-title">My Crow</h4>
+                  <h4 class="card-title">My Crew</h4>
                   <p class="card-category"></p>
                 </div>
-                <div class="card-body" id="divDevelopers">
-                  
+
+                <div class="card-body">
+
+                  <input type="text" id="myInput" onkeyup="myFunction()" class="form-control"
+                    placeholder="Search for names.." title="Type in a name">
+                  <table class="table table-hover" id="divDevelopers">
+                  </table>
                 </div>
               </div>
             </div>
@@ -127,9 +132,9 @@
                     <input type="email" class="form-control" id="email">
                   </div>
                   <div class="form-group">
-                      <label class="bmd-label-floating">Password</label>
-                      <input type="text" class="form-control" id="password">
-                    </div>
+                    <label class="bmd-label-floating">Password</label>
+                    <input type="text" class="form-control" id="password">
+                  </div>
 
                   <div class="form-group">
                     <input type="radio" name="editList" id="developer" value="developer" />
@@ -147,6 +152,46 @@
               </div>
             </div>
             <!-- end add developer -->
+            <!-- edit developer -->
+            <div class="col-md-4">
+                <div class="card card-profile">
+                  <div class="card-avatar">
+                    <a href="#pablo">
+                      <img class="img" src="../assets/img/faces/developer.png" />
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-category text-gray">Add new developer to the team</h6></br>
+                    <div class="form-group">
+                      <label class="bmd-label-floating">User Name</label>
+                      <input type="text" class="form-control" id="edituserName">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Email address</label>
+                      <input type="email" class="form-control" id="editemail">
+                    </div>
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Password</label>
+                      <input type="text" class="form-control" id="editpassword">
+                    </div>
+  
+                    <div class="form-group">
+                      <input type="radio" name="editList" id="editdeveloper" value="developer" />
+                      <label for="developer">Developer</label>
+                      <input type="radio" name="editList" id="editdesigner" value="designer" />
+                      <label for="designer">Designer</label>
+                      <input type="radio" name="editList" id="editother" value="other" />
+                      <label for="other">Other</label>
+                    </div>
+                    <!-- <p class="card-description">
+                      Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    </p> -->
+                    <a href="" class="btn btn-primary btn-round" onclick="editDeveloper()">Edit Profile</a>
+                  </div>
+                </div>
+              </div>
+              <!-- end edit developer -->
           </div>
 
         </div>
@@ -177,7 +222,7 @@
               </li>
             </ul>
           </nav>
-          
+
         </div>
       </footer>
     </div>
@@ -222,9 +267,9 @@
           <a class="img-holder switch-trigger" href="javascript:void(0)">
             <img src="../assets/img/sidebar-4.jpg" alt="">
           </a>
-        
-        
-        
+
+
+
       </ul>
     </div>
   </div>
@@ -272,7 +317,7 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script>
-    
+
     $(document).ready(function () {
       $().ready(function () {
         $sidebar = $('.sidebar');
@@ -449,13 +494,13 @@
       md.initDashboardPageCharts();
 
     });
-   
+
     function addDeveloper() {
       var developers = JSON.parse(localStorage.getItem('developers'));
 
-        if (developers == null) {
-                var developers = [];
-        }
+      if (developers == null) {
+        var developers = [];
+      }
 
       if (document.getElementById('developer').checked) {
         role = "developer";
@@ -466,49 +511,108 @@
       if (document.getElementById('other').checked) {
         role = 'other';
       }
-      developers.push({ idDev: Math.floor(Math.random() * 1000 + 1), "email": document.getElementById("email").value, "userName": document.getElementById("userName").value, "password":document.getElementById("password").value, "role":role});
+      developers.push({ idDev: Math.floor(Math.random() * 1000 + 1), "email": document.getElementById("email").value, "userName": document.getElementById("userName").value, "password": document.getElementById("password").value, "role": role });
 
       localStorage.setItem("developers", JSON.stringify(developers));
 
     }
-    function displayCrow(){
+    function displayCrew() {
 
-      
-      var tab = `<table class="table table-hover">
+
+      var tab = `
+      <table class="table table-hover">
                     <thead class="text-warning">
-                      <th>ID</th>
+                      
                       <th>User Name</th>
                       <th>Email</th>
                       <th>Password</th>
                       <th>Role</th>
+                      <th></th>
                      
                     </thead>
                     <tbody> `;
-        var developers = JSON.parse(localStorage.getItem("developers"));
+      var developers = JSON.parse(localStorage.getItem("developers"));
 
-        for (var i = 0; i < developers.length; i++) {
-                        tab += `
+      for (var i = 0; i < developers.length; i++) {
+        tab += `
              
                 <tr onclick="editProjectDisplay(${developers[i].idDev})" >
-                    <td >${i+1}</td>
+                    
                     <td>${developers[i].userName}</td>
                     <td>${developers[i].email}</td>
                     <td>${developers[i].password}</td>
                     <td>${developers[i].role}</td>
+                    <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" onclick="editProfile(${developers[i].idDev})">
+                            <i class="material-icons">edit</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm" onclick="deleteProfile(${developers[i].idDev})">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
                     
                 </tr>
             `;
 
-                }
-          
-          tab +=  `
+      }
+
+      tab += `
         </tbody>
               </table>`;
-                document.getElementById("divDevelopers").innerHTML = tab;
+      document.getElementById("divDevelopers").innerHTML = tab;
 
 
     }
+
+    function editProfile(idDev){
+      // edit profile
+
+
+    }
+    function deleteProfile(idDev){
+      // delete profile
+      var developers = JSON.parse(localStorage.getItem('developers'));
+        for (var i = 0; i < developers.length; i++) {
+                // console.log(id +" delete function boucle for");
+
+                if (developers[i].idDev == idDev) {
+
+                        developers.splice(i, 1);
+
+                }
+
+        }
+        localStorage.setItem("developers", JSON.stringify(developers));
+
+
+        //display table after action
+        this.displayCrew();
+
+    }
   </script>
+
+
+  <script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("divDevelopers");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+
 </body>
 
 </html>
