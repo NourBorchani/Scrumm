@@ -14,7 +14,7 @@ body{
 .button{
   display: inline-block;
   padding: 10px;
-  background: linear-gradient(#79a6e2 2%, #3366aa 5%, #1e4e8e);
+  background: linear-gradient(#800080e2 3%, #3366aa 4%, #800080);
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -31,10 +31,16 @@ body{
   color: #3366aa;
   font-weight: normal;
 }
+.button-review{
+  background: transparent;
+  box-shadow: none;
+  color:rgb(255,165,0);
+  font-weight: normal;
+}
 .button-progress{
   background: transparent;
   box-shadow: none;
-  color: #c06300;
+  color:rgb(255,69,0);
   font-weight: normal;
 }
 .button-done{
