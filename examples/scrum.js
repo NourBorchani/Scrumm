@@ -15,7 +15,8 @@ var todo = {
 }
 todoTable.push(todo)
 localStorage.setItem('tasks', JSON.stringify(todoTable));
-displayTask()
+displayTask();
+document.getElementById('task').value = "";
 }
 
 function displayTask() {
@@ -36,19 +37,18 @@ function displayBacklog()
       {
           console.log(todoTable);
 
-          html += `<div class="card">
+
+          html += `<div id ="${todoTable[i].id}" class="card" draggable="true" ondragstart="drag(event)">
           <div class="card-header card-header-info">
-          
+      
+          <button class="button button-progress"  onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+       
+          <button type="button"  onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
+          </div>
+          <div class="card-body">
          <h4>${todoTable[i].task}</h4>
          
-         </div>
-         <div class="card-body">
-      
-           <button class="button button-progress" style="font-weight: gras" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
-        
-           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
-                    
-
+       
          </div>
          </div>`
         }
@@ -65,20 +65,20 @@ function displayInProgress()
       {
           console.log(todoTable);
 
-          html += `<div class="card">
-          <div class="card-header card-header-warning">
+          html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
           
-         <h4>${todoTable[i].task}</h4>
+        
+          <div class="card-header card-header-warning" >
+          <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
+      
+          <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
+          
+          
+          <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
          
          </div>
          <div class="card-body">
-           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
-      
-           <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
-          
-           <br>
-           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
-                      
+         <h4>${todoTable[i].task}</h4>
 
          </div>
          </div>`
@@ -95,19 +95,19 @@ function displayInReview()
       {
           console.log(todoTable);
 
-          html += `<div class="card">
+          html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
           <div class="card-header card-header-danger">
-         <h4>${todoTable[i].task}</h4>
-         </div>
-         <div class="card-body">
+          <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})' >Backlog</button>
+          <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+          <button class="button button-done" onclick='moveDone(${todoTable[i].id})'>Done</button>
+
+          <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
+          </div>        
+        
          
-           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})' >Backlog</button>
-           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
-           <button class="button button-done" onclick='moveDone(${todoTable[i].id})'>Done</button>
-           
-           <br>
-           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
-                     
+         <div class="card-body">
+         <h4>${todoTable[i].task}</h4>
+          
 
          </div>
          </div>`
@@ -125,21 +125,15 @@ function displayDone()
       {
           console.log(todoTable);
 
-          html += `<div class="card">
+          html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
           <div class="card-header card-header-success">
-         <h4>${todoTable[i].task}</h4>
-         </div>
-      
-      
+          <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
+          <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
+          <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+          <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
+        </div>
          <div class="card-body">
-           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
-      
-           <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
-           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
-           <br>
-           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
-                     
-
+         <h4>${todoTable[i].task}</h4>
          </div>
          </div>`
         }
@@ -160,8 +154,9 @@ function deleteTask(id) {
             displayTask();
             return true;
         }
-    }    
-    return false;   }  
+    } 
+  }   
+    return false;     
     }
 
      // 
@@ -239,7 +234,25 @@ function deleteTask(id) {
       }
       localStorage.setItem('tasks', JSON.stringify(todoTable));
       displayTask()
-     }             
+     }     
+     
+     function allowDrop(ev) {
+      ev.preventDefault();
+    }
+    
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+      console.log (ev.target.id)
+    }
+    
+    function drop(ev,) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      console.log (ev.dataTransfer.getData("text"));
+
+      ev.target.appendChild(document.getElementById(data));
+      
+    }
 
     /* function edit user story 
     function Edit(){
