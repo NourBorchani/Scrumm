@@ -151,48 +151,14 @@
                 </div>
               </div>
             </div>
-            <!-- end add developer -->
-            <!-- edit developer -->
-            <div class="col-md-4">
-                <div class="card card-profile">
-                  <div class="card-avatar">
-                    <a href="#pablo">
-                      <img class="img" src="../assets/img/faces/developer.png" />
-                    </a>
-                  </div>
-                  <div class="card-body">
-                    <h6 class="card-category text-gray">Add new developer to the team</h6></br>
-                    <div class="form-group">
-                      <label class="bmd-label-floating">User Name</label>
-                      <input type="text" class="form-control" id="edituserName">
-                    </div>
-  
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Email address</label>
-                      <input type="email" class="form-control" id="editemail">
-                    </div>
-                    <div class="form-group">
-                      <label class="bmd-label-floating">Password</label>
-                      <input type="text" class="form-control" id="editpassword">
-                    </div>
-  
-                    <div class="form-group">
-                      <input type="radio" name="editList" id="editdeveloper" value="developer" />
-                      <label for="developer">Developer</label>
-                      <input type="radio" name="editList" id="editdesigner" value="designer" />
-                      <label for="designer">Designer</label>
-                      <input type="radio" name="editList" id="editother" value="other" />
-                      <label for="other">Other</label>
-                    </div>
-                    <!-- <p class="card-description">
-                      Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                    </p> -->
-                    <a href="" class="btn btn-primary btn-round" onclick="editDeveloper()">Edit Profile</a>
-                  </div>
-                </div>
-              </div>
-              <!-- end edit developer -->
           </div>
+          <!-- end add developer -->
+          <!-- edit developer -->
+          <div class="row">
+            <div class="col-md-12 col-lg-6 " id="divEditProfile"></div>
+          </div>
+          <!-- end edit developer -->
+
 
         </div>
       </div>
@@ -536,17 +502,17 @@
       for (var i = 0; i < developers.length; i++) {
         tab += `
              
-                <tr onclick="editProjectDisplay(${developers[i].idDev})" >
+                <tr >
                     
                     <td>${developers[i].userName}</td>
                     <td>${developers[i].email}</td>
                     <td>${developers[i].password}</td>
                     <td>${developers[i].role}</td>
                     <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" onclick="editProfile(${developers[i].idDev})">
+                          <button type="button" rel="tooltip" class="btn btn-primary btn-link btn-sm" onclick="editProfile(${developers[i].idDev})">
                             <i class="material-icons">edit</i>
                           </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm" onclick="deleteProfile(${developers[i].idDev})">
+                          <button type="button" rel="tooltip"  class="btn btn-danger btn-link btn-sm" onclick="deleteProfile(${developers[i].idDev})">
                             <i class="material-icons">close</i>
                           </button>
                         </td>
@@ -564,29 +530,132 @@
 
     }
 
-    function editProfile(idDev){
+    function editProfile(idDev) {
       // edit profile
-
-
-    }
-    function deleteProfile(idDev){
-      // delete profile
       var developers = JSON.parse(localStorage.getItem('developers'));
-        for (var i = 0; i < developers.length; i++) {
-                // console.log(id +" delete function boucle for");
 
-                if (developers[i].idDev == idDev) {
 
-                        developers.splice(i, 1);
+      // document.getElementById("divEdit").style.display = "block";
 
-                }
+
+      var div = `
+                <div class="card card-profile">
+                  <div class="card-avatar">
+                    <a href="#pablo">
+                      <img class="img" src="../assets/img/faces/developer.png" />
+                    </a>
+                  </div>
+                  <div class="card-body" >
+                    <h6 class="card-category text-gray">Add new developer to the team</h6></br>
+                    <div class="form-group">
+                      <label class="bmd-label-floating">User Name</label>
+                      <input type="text" class="form-control" id="edituserName">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Email address</label>
+                      <input type="email" class="form-control" id="editemail">
+                    </div>
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Password</label>
+                      <input type="text" class="form-control" id="editpassword">
+                    </div>
+  
+                    <div class="form-group">
+                      <input type="radio" name="editprofile" id="editdeveloper" value="developer" />
+                      <label for="editdeveloper">Developer</label>
+                      <input type="radio" name="editprofile" id="editdesigner" value="designer" />
+                      <label for="editdesigner">Designer</label>
+                      <input type="radio" name="editprofile" id="editother" value="other" />
+                      <label for="editother">Other</label>
+                    </div>
+                    
+                    <a href="" class="btn btn-primary btn-round" onclick="updateProfile(${idDev})">Update Profile</a>
+                  </div>
+                </div>
+              `
+      for (var i = 0; i < developers.length; i++) {
+        if (developers[i].idDev == idDev) {
+
+          document.getElementById("divEditProfile").innerHTML = div;
+          document.getElementById("edituserName").value = developers[i].userName;
+          document.getElementById("editemail").value = developers[i].email;
+          document.getElementById("editpassword").value = developers[i].password;
+         
+          if (developers[i].role == "developer") {
+            
+            document.getElementById("editdeveloper").checked = true;
+          } else {
+            if (developers[i].role == "designer") {
+             
+
+              document.getElementById("editdesigner").checked = true;
+            } else {
+              if (developers[i].role == "other") {
+                
+
+                document.getElementById("editother").checked = true;
+              }
+            }
+          }
 
         }
-        localStorage.setItem("developers", JSON.stringify(developers));
+      }
+
+    }
+    function deleteProfile(idDev) {
+      // delete profile
+      var developers = JSON.parse(localStorage.getItem('developers'));
+      for (var i = 0; i < developers.length; i++) {
+        // console.log(id +" delete function boucle for");
+
+        if (developers[i].idDev == idDev) {
+
+          developers.splice(i, 1);
+
+        }
+
+      }
+      localStorage.setItem("developers", JSON.stringify(developers));
 
 
-        //display table after action
-        this.displayCrew();
+      //display table after action
+      this.displayCrew();
+
+    }
+
+
+    function updateProfile(idDev) {
+      console.log("updateProfile function");
+
+      var developers = JSON.parse(localStorage.getItem('developers'));
+
+      if (developers == null) {
+        var developers = [];
+      }
+
+      if (document.getElementById('editdeveloper').checked) {
+        role = "developer";
+      }
+      if (document.getElementById('editdesigner').checked) {
+        role = 'designer';
+      }
+      if (document.getElementById('editother').checked) {
+        role = 'other';
+      }
+
+      for(var i = 0; i < developers.length; i++)
+      {
+        console.log(developers[i].idDev==idDev);
+        if(developers[i].idDev==idDev){
+          
+          developers.splice(i, 1, { "idDev": idDev,  "userName": document.getElementById("edituserName").value, "email": document.getElementById("editemail").value, "password": document.getElementById("editpassword").value, "role": role,});
+
+        }
+      }
+      
+
+      localStorage.setItem("developers", JSON.stringify(developers));
 
     }
   </script>
