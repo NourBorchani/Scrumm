@@ -37,7 +37,7 @@
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body onload="teamDisplay()">
+<body onload="displayCrew()">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
@@ -65,9 +65,15 @@
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="./team.html">
+            <a class="nav-link" href="./profiles.html">
+              <i class="material-icons">portrait</i>
+              <p>Profiles</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./teams.html">
               <i class="material-icons">people</i>
-              <p>Team</p>
+              <p>Teams</p>
             </a>
           </li>
 
@@ -79,300 +85,30 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Manage My Team</a>
+            <a class="navbar-brand" href="#pablo">Manage My Crew</a>
           </div>
         </div>
       </nav>
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <div class="row" id="divDisplayTeam">
-            <!-- team list -->
-            <div class="col-md-12">
-              <div class="card" >
-                <div class="card-header card-header-success">
-                  <h4 class="card-title">My Teams<a href="#addTeam" onclick="addTeamDisplay()">
-                      <i class="material-icons" style="text-align: right;">add_circle_outline</i></a></h4>
-                </div>
-                <div class="card-body table-responsive">
-                  <table class="table table-hover">
-                    <thead class="text-warning">
-                      <th>ID</th>
-                      <th>Email</th>
-                      <th>Project</th>
-                      <th>Role</th>
-                    </thead>
-                    <tbody>
-                      <tr onclick="editTeamDisplay()">
-                        <td>1</td>
-                        <td>Salma</td>
-                        <td>Scrumy</td>
-                        <td>Developer</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Jassem</td>
-                        <td>Scrumy</td>
-                        <td>Developer</td>
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end project list -->
-
-          <!-- add project -->
-          <div class="row" id="divAddTeam">
-            <div class="col-md-12">
-              <div class="card" >
-                <div class="card-header card-header-warning">
-                  <h4 class="card-title">Add New Team</h4>
-                  <p class="card-category"></p>
-                </div>
-                <div class="card-body">
-                  <form>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Team Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Client</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Description</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Technology</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <label class="bmd-label-floating">Start Date</label>
-                        <div class="form-group">
-
-                          <input type="date" class="form-control">
-                        </div>
-                      </div>
-
-                    </div>
 
 
-                    <button type="submit" class="btn btn-primary pull-right" style="background-color: #ff9100 ;"
-                      onclick="addTeam()">Add Team</button>
-                    <div class="clearfix"></div>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-
-
-            <!-- end add project -->
-          </div>
-          <!-- list project -->
-          <div class="row">
-
-          </div>
-          <!-- end list project -->
-          <div class="row"  id="divEditTeam">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">Developer Details</h4>
-                  <p class="card-category">Edit your Project</p>
-                </div>
-                <div class="card-body">
-                  <form>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Company </label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-3">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Fist Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Adress</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">City</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Country</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Postal Code</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>About Me</label>
-                          <div class="form-group">
-                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that
-                              two seat Lambo.</label>
-                            <textarea class="form-control" rows="5"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary pull-right">Update Team</button>
-                    <div class="clearfix"></div>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          <!-- developer details -->
           <div class="row">
             <div class="col-md-8">
-              <div class="card">
+              <div class="card" id="divDisplayCrew">
                 <div class="card-header card-header-success">
-                  <h4 class="card-title">Teams</h4>
+                  <h4 class="card-title">My Crew</h4>
                   <p class="card-category"></p>
                 </div>
+
                 <div class="card-body">
-                  <form>
-                    <div class="row">
 
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Email Address</label>
-                          <input type="email" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Password</label>
-                          <input type="password" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Confirm Password</label>
-                          <input type="password" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <form class="form-inline">
-                          <div class="form-group">
-                            <label class="bmd-label-floating">Role</label><br>
-                            
-                            <input type="radio" name="editList" id="developer" value="developer" />
-                            <label for="developer">Developer</label>
-
-                            <input type="radio" name="editList" id="designer" value="designer" />
-                            <label for="designer">Designer</label>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">City</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Country</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="bmd-label-floating">Postal Code</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>About Me</label>
-                          <div class="form-group">
-                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that
-                              two seat Lambo.</label>
-                            <textarea class="form-control" rows="5"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
-                    <div class="clearfix"></div>
-                  </form>
+                  <input type="text" id="myInput" onkeyup="myFunction()" class="form-control"
+                    placeholder="Search for names.." title="Type in a name">
+                  <table class="table table-hover" id="divDevelopers">
+                  </table>
                 </div>
               </div>
             </div>
@@ -388,20 +124,74 @@
                   <h6 class="card-category text-gray">Add new developer to the team</h6></br>
                   <div class="form-group">
                     <label class="bmd-label-floating">User Name</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" id="userName">
                   </div>
+
                   <div class="form-group">
                     <label class="bmd-label-floating">Email address</label>
-                    <input type="email" class="form-control">
+                    <input type="email" class="form-control" id="email">
+                  </div>
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Password</label>
+                    <input type="text" class="form-control" id="password">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="radio" name="editList" id="developer" value="developer" />
+                    <label for="developer">Developer</label>
+                    <input type="radio" name="editList" id="designer" value="designer" />
+                    <label for="designer">Designer</label>
+                    <input type="radio" name="editList" id="other" value="other" />
+                    <label for="other">Other</label>
                   </div>
                   <!-- <p class="card-description">
                     Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
                   </p> -->
-                  <a href="#pablo" class="btn btn-primary btn-round">Add</a>
+                  <a href="" class="btn btn-primary btn-round" onclick="addDeveloper()">Add</a>
                 </div>
               </div>
             </div>
             <!-- end add developer -->
+            <!-- edit developer -->
+            <div class="col-md-4">
+                <div class="card card-profile">
+                  <div class="card-avatar">
+                    <a href="#pablo">
+                      <img class="img" src="../assets/img/faces/developer.png" />
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-category text-gray">Add new developer to the team</h6></br>
+                    <div class="form-group">
+                      <label class="bmd-label-floating">User Name</label>
+                      <input type="text" class="form-control" id="edituserName">
+                    </div>
+  
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Email address</label>
+                      <input type="email" class="form-control" id="editemail">
+                    </div>
+                    <div class="form-group">
+                      <label class="bmd-label-floating">Password</label>
+                      <input type="text" class="form-control" id="editpassword">
+                    </div>
+  
+                    <div class="form-group">
+                      <input type="radio" name="editList" id="editdeveloper" value="developer" />
+                      <label for="developer">Developer</label>
+                      <input type="radio" name="editList" id="editdesigner" value="designer" />
+                      <label for="designer">Designer</label>
+                      <input type="radio" name="editList" id="editother" value="other" />
+                      <label for="other">Other</label>
+                    </div>
+                    <!-- <p class="card-description">
+                      Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                    </p> -->
+                    <a href="" class="btn btn-primary btn-round" onclick="editDeveloper()">Edit Profile</a>
+                  </div>
+                </div>
+              </div>
+              <!-- end edit developer -->
           </div>
 
         </div>
@@ -411,34 +201,28 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
+                <a href="">
                   SCRUMY
                 </a>
               </li>
               <li>
-                <a href="https://creative-tim.com/presentation">
+                <a href="">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="http://blog.creative-tim.com">
+                <a href="">
                   Blog
                 </a>
               </li>
               <li>
-                <a href="https://www.creative-tim.com/license">
+                <a href="">
                   Licenses
                 </a>
               </li>
             </ul>
           </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="material-icons">favorite</i> by
-            <a href="https://www.creative-tim.com" target="_blank">SCRUMY</a> for a better web.
-          </div>
+
         </div>
       </footer>
     </div>
@@ -483,30 +267,9 @@
           <a class="img-holder switch-trigger" href="javascript:void(0)">
             <img src="../assets/img/sidebar-4.jpg" alt="">
           </a>
-        </li>
-        <li class="button-container">
-          <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank"
-            class="btn btn-primary btn-block">Free Download</a>
-        </li>
 
-        <li class="button-container">
-          <a href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html"
-            target="_blank" class="btn btn-default btn-block">
-            View Documentation
-          </a>
-        </li>
-        <li class="button-container github-star">
-          <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard"
-            data-icon="octicon-star" data-size="large" data-show-count="true"
-            aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-        </li>
-        <li class="header-title">Thank you for 95 shares!</li>
-        <li class="button-container text-center">
-          <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
-          <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
-          <br>
-          <br>
-        </li>
+
+
       </ul>
     </div>
   </div>
@@ -554,23 +317,6 @@
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
   <script>
-    function editTeamDisplay() {
-      document.getElementById("divDisplayTeam").style.display = "none";
-      document.getElementById("divAddTeam").style.display = "none";
-      document.getElementById("divEditTeam").style.display = "block";
-
-    }
-
-    function addTeamDisplay() {
-      document.getElementById("divEditTeam").style.display = "none";
-      document.getElementById("divDisplayTeam").style.display = "none";
-      document.getElementById("divAddTeam").style.display = "block";
-    }
-    function teamDisplay() {
-      document.getElementById("divAddTeam").style.display = "none";
-      document.getElementById("divEditTeam").style.display = "none";
-      document.getElementById("divDisplayTeam").style.display = "block";
-    }
 
     $(document).ready(function () {
       $().ready(function () {
@@ -748,10 +494,125 @@
       md.initDashboardPageCharts();
 
     });
-    function addProject() {
+
+    function addDeveloper() {
+      var developers = JSON.parse(localStorage.getItem('developers'));
+
+      if (developers == null) {
+        var developers = [];
+      }
+
+      if (document.getElementById('developer').checked) {
+        role = "developer";
+      }
+      if (document.getElementById('designer').checked) {
+        role = 'designer';
+      }
+      if (document.getElementById('other').checked) {
+        role = 'other';
+      }
+      developers.push({ idDev: Math.floor(Math.random() * 1000 + 1), "email": document.getElementById("email").value, "userName": document.getElementById("userName").value, "password": document.getElementById("password").value, "role": role });
+
+      localStorage.setItem("developers", JSON.stringify(developers));
+
+    }
+    function displayCrew() {
+
+
+      var tab = `
+      <table class="table table-hover">
+                    <thead class="text-warning">
+                      
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>Password</th>
+                      <th>Role</th>
+                      <th></th>
+                     
+                    </thead>
+                    <tbody> `;
+      var developers = JSON.parse(localStorage.getItem("developers"));
+
+      for (var i = 0; i < developers.length; i++) {
+        tab += `
+             
+                <tr onclick="editProjectDisplay(${developers[i].idDev})" >
+                    
+                    <td>${developers[i].userName}</td>
+                    <td>${developers[i].email}</td>
+                    <td>${developers[i].password}</td>
+                    <td>${developers[i].role}</td>
+                    <td class="td-actions text-right">
+                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm" onclick="editProfile(${developers[i].idDev})">
+                            <i class="material-icons">edit</i>
+                          </button>
+                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm" onclick="deleteProfile(${developers[i].idDev})">
+                            <i class="material-icons">close</i>
+                          </button>
+                        </td>
+                    
+                </tr>
+            `;
+
+      }
+
+      tab += `
+        </tbody>
+              </table>`;
+      document.getElementById("divDevelopers").innerHTML = tab;
+
+
+    }
+
+    function editProfile(idDev){
+      // edit profile
+
+
+    }
+    function deleteProfile(idDev){
+      // delete profile
+      var developers = JSON.parse(localStorage.getItem('developers'));
+        for (var i = 0; i < developers.length; i++) {
+                // console.log(id +" delete function boucle for");
+
+                if (developers[i].idDev == idDev) {
+
+                        developers.splice(i, 1);
+
+                }
+
+        }
+        localStorage.setItem("developers", JSON.stringify(developers));
+
+
+        //display table after action
+        this.displayCrew();
 
     }
   </script>
+
+
+  <script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("divDevelopers");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+
 </body>
 
 </html>
