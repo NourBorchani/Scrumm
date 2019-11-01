@@ -154,18 +154,12 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item">
+           <li class="nav-item">
             <a class="nav-link" href="./projects.html">
-              <i class="material-icons">card_giftcard</i>
+              <i class="material-icons">dashboard</i>
               <p>Projects</p>
             </a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" href="./team.html">
-                <i class="material-icons">people</i>
-                <p>Team</p>
-              </a>
-            </li>
           <!--<li class="nav-item ">
             <a class="nav-link" href="./user.html">
               <i class="material-icons">person</i>
@@ -222,16 +216,16 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
           <div class="container-fluid">
-            <div class="navbar-wrapper">
-              <a class="navbar-brand" href="#pablo">Dashboard</a>
+ <div class="navbar-wrapper">
+             <!--  <a class="navbar-brand" href="#pablo">Dashboard</a>-->
             </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+           <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
               <span class="sr-only">Toggle navigation</span>
               <span class="navbar-toggler-icon icon-bar"></span>
               <span class="navbar-toggler-icon icon-bar"></span>
               <span class="navbar-toggler-icon icon-bar"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end">
+            </button>-->
+           <div class="collapse navbar-collapse justify-content-end">
               <form class="navbar-form">
                 <!-- <div class="input-group no-border">
                   <input type="text" value="" class="form-control" placeholder="Search...">
@@ -239,19 +233,20 @@
                     <i class="material-icons">search</i>
                     <div class="ripple-container"></div>
                   </button>
-                </div> -->
+                </div> 
               </form>
               <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#pablo">
-                    <i class="material-icons">dashboard</i>
+                <li class="nav-item">-->
+                  <!--<a class="nav-link" href="#pablo">
+                    <i class="material-icons">dashboard</i>-->
                     <p class="d-lg-none d-md-block">
                       Stats
                     </p>
                   </a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <!-- <li class="nav-item dropdown">
+                    <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons">notifications</i>
                     <span class="notification">5</span>
                     <p class="d-lg-none d-md-block">
@@ -283,13 +278,9 @@
               </ul>
             </div>
           </div>
-        </nav>
+        </nav>-->
         <!-- End Navbar -->
-        <div class="content">
-            <div class="container-fluid">
-        <div ng-app="ScrumApp">
-            <div>
-              <div class="form">
+       
                 <!--<h1>Simple Scrum Board</h1>
                 <link rel="stylesheet" href="C:\Users\DELL\Desktop\scrum\scrum.css">
                 <input type="text" placeholder="Type Task" id="task" />
@@ -341,21 +332,11 @@
             
   </div>
   </div><!-->
-    <div ng-app="ScrumApp">
-        <div>
-          <div class="form">
-            <!-- <h1>Simple Scrum Board</h1> -->
-            <link rel="stylesheet" href="scrum.css">
-            <input type="text" placeholder="As a User I can do ..." id="task" />
-            <!-- <input type="text" placeholder="developer" /> -->
-            <button type="submit" id="add-button" class="btn btn-primary"  onclick="addTask()">Add User Story</button>
-
-            
-          </div>
+    
           
-          <div class="flex">
+<!--<div class="flex">
             <div id="divTasks" class="scrum-board backlog">
-             <!-- <h3>Sprint Backlog</h3>
+              <h3>Sprint Backlog</h3>
               <div class="input-group overflow">
                 <span>Wash dishes</span>
                 <a href="#" class="drag">Drag</a>
@@ -383,23 +364,68 @@
                 <div class="margin-top-10">
                   <button class="button button-backlog">Backlog</button><button class="button button-progress">In Progress</button><button class="button button-progress">In Review</button><button class="button button-done">Done</button><button class="button button-delete">Delete</button>
                 </div>
-              </div>   -->     
-            </div>
-      
-            <div id= "tasksInprogress" class="scrum-board in-progress">
-              <h3>In progress</h3>
-            </div>
-            <div id="tasksInreview" class="scrum-board in-review">
-                <h3>In Review</h3>
-              </div>
-
-            <div  id="tasksInDone"class="scrum-board done">
-              <h3>Done</h3>
-            </div>
-      
-          </div>
-
-        </div>
+              </div>        
+            </div>-->
+           <!-- <div class="flex">-->
+              <div ng-app="ScrumApp">
+                  <div>
+                    <div class="form">
+                      <!-- <h1>Simple Scrum Board</h1> -->
+                      <link rel="stylesheet" href="scrum.css">
+                      <input type="text" placeholder="As a User I can do ..." id="task" />
+                      <!-- <input type="text" placeholder="developer" /> -->
+                      <button type="submit" id="add-button" class="btn btn-primary"  onclick="addTask()">Add User Story</button>
+          
+                      
+                    </div>
+                    
+                    <div class="flex">
+                      <div id="divTasks" class="scrum-board backlog"ondrop="drop(event)" ondragover="allowDrop(event)" >
+                       <!-- <h3>Sprint Backlog</h3>
+                        <div class="input-group overflow">
+                          <span>Wash dishes</span>
+                          <a href="#" class="drag">Drag</a>
+                          <div class="margin-top-10">
+                             <button class="button button-backlog">Backlog</button><button class="button button-progress">In Progress</button><button class="button button-progress">In Review</button><button class="button button-done">Done</button><br><button class="button button-delete">Delete</button>
+                          </div>
+                        </div> 
+                        <div class="input-group overflow">
+                          <span>Make bed</span>
+                          <a href="#" class="drag">Drag</a>
+                          <div class="margin-top-10">
+                            <button class="button button-backlog">Backlog</button><button class="button button-progress"><small>In Progress</small></button><button class="button button-progress">In Review</button><button class="button button-done">Done</button><button class="button button-delete">Delete</button>
+                          </div>
+                        </div>
+                        <div class="input-group overflow">
+                          <span>Cook dinner</span>
+                          <a href="#" class="drag">Drag</a>
+                          <div class="margin-top-10">
+                            <button class="button button-backlog">Backlog</button><button class="button button-progress">In Progress</button><button class="button button-progress">In Review</button><button class="button button-progress">In Review</button><button class="button button-done">Done</button><button class="button button-delete">Delete</button>
+                          </div>
+                        </div>
+                        <div class="input-group overflow">
+                          <span>Ask wife permission to go on trip</span>
+                          <a href="#" class="drag">Drag</a>
+                          <div class="margin-top-10">
+                            <button class="button button-backlog">Backlog</button><button class="button button-progress">In Progress</button><button class="button button-progress">In Review</button><button class="button button-done">Done</button><button class="button button-delete">Delete</button>
+                          </div>
+                        </div>   -->     
+                      </div>
+                
+                      <div id= "tasksInprogress" class="scrum-board in-progress"ondrop="drop(event)" ondragover="allowDrop(event)" >
+                        <h3>In progress</h3>
+                      </div>
+                      <div id="tasksInreview" class="scrum-board in-review" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                          <h3>In Review</h3>
+                        </div>
+          
+                      <div  id="tasksInDone" class="scrum-board done" ondrop="drop(event)" ondragover="allowDrop(event)" >
+                        <h3>Done</h3>
+                      </div>
+                
+                    </div>
+          
+                  </div>
         <footer class="footer">
             <div class="container-fluid">
               <nav class="float-left">
@@ -436,8 +462,74 @@
             </div>
           </footer>
       </div></div>
-</div>
+  <div class="fixed-plugin">
+    <!--<div class="dropdown show-dropdown">
+      <a href="#" data-toggle="dropdown">
+        <i class="fa fa-cog fa-2x"> </i>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="header-title"> Sidebar Filters</li>
+        <li class="adjustments-line">
+          <a href="javascript:void(0)" class="switch-trigger active-color">
+            <div class="badge-colors ml-auto mr-auto">
+              <span class="badge filter badge-purple" data-color="purple"></span>
+              <span class="badge filter badge-azure" data-color="azure"></span>
+              <span class="badge filter badge-green" data-color="green"></span>
+              <span class="badge filter badge-warning" data-color="orange"></span>
+              <span class="badge filter badge-danger" data-color="danger"></span>
+              <span class="badge filter badge-rose active" data-color="rose"></span>
+            </div>
+            <div class="clearfix"></div>
+          </a>
+        </li>
+        <li class="header-title">Images</li>
+        <li class="active">
+          <a class="img-holder switch-trigger" href="javascript:void(0)">
+            <img src="../assets/img/sidebar-1.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a class="img-holder switch-trigger" href="javascript:void(0)">
+            <img src="../assets/img/sidebar-2.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a class="img-holder switch-trigger" href="javascript:void(0)">
+            <img src="../assets/img/sidebar-3.jpg" alt="">
+          </a>
+        </li>
+        <li>
+          <a class="img-holder switch-trigger" href="javascript:void(0)">
+            <img src="../assets/img/sidebar-4.jpg" alt="">
+          </a>
+        </li>
+        <li class="button-container">
+          <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-primary btn-block">Free Download</a>
+        </li>
+        <!-- <li class="header-title">Want more components?</li>
+            <li class="button-container">
+                <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
+                  Get the pro version
+                </a>
+        <li class="button-container">
+          <a href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
+            View Documentation
+          </a>
+        </li>
+        <li class="button-container github-star">
+          <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+        </li>
+        <li class="header-title">Thank you for 95 shares!</li>
+        <li class="button-container text-center">
+          <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
+          <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
+          <br>
+          <br>
+        </li>
+      </ul>
+    </div>
   </div>
+  </div>-->
              <!-- The Modal -->
              <div id="myModal" class="modal">
 
@@ -509,9 +601,6 @@
                   
                   
                  
-
-
-
                </div>
         <!-- end header -->
            <div class="modal-body">
@@ -543,7 +632,7 @@
 
           <!-- end model -->
   <!--   Core JS Files   -->
-  <script src="C:\Users\DELL\Desktop\scrum\scrum.js"></script>
+ 
 
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>

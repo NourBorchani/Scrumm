@@ -34,13 +34,13 @@ body{
 .button-review{
   background: transparent;
   box-shadow: none;
-  color:rgb(255,165,0);
+  color:rgb(255,0,255);
   font-weight: normal;
 }
 .button-progress{
   background: transparent;
   box-shadow: none;
-  color:rgb(255,69,0);
+  color:rgb(0, 81, 255);
   font-weight: normal;
 }
 .button-done{
