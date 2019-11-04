@@ -96,7 +96,7 @@ function displayInReview()
           console.log(todoTable);
 
           html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
-          <div class="card-header card-header-danger" style=" height: 135px;width: 95%;"  >
+          <div class="card-header card-header-danger"  >
           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})' >Backlog</button>
           <button class="button button-done" onclick='moveDone(${todoTable[i].id})'>Done</button>
           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>InProgress</button>
@@ -121,7 +121,7 @@ function displayDone()
           console.log(todoTable);
 
           html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
-          <div class="card-header  card-header-success"  style=" height: 135px;width: 100%;"     >
+          <div class="card-header  card-header-success"    >
           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
           <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
