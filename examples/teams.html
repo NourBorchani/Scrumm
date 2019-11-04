@@ -22,7 +22,7 @@
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body onload="displayCrew();diplayTeam()">
+<body onload="displayTeam()">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
@@ -85,9 +85,9 @@
                           display list of developers and choose from it to create a team
                           we add the details of affecting a team to a certain project  
                         -->
-      <div class="content">
-        <div class="container-fluid" id="divDisplayTeam">
-          <div class="row" id="divAddTeam">
+      <div class="content" id="divAddTeam">
+        <div class="container-fluid" >
+          <div class="row" >
             <div class="col-lg-4 col-md-12">
               <div class="card">
                 <div class="card-header card-header-tabs card-header-primary">
@@ -468,56 +468,56 @@
       var tabdev = ` `;
       var tabdes = ``;
       var tabother = ``;
+users
+      var users = JSON.parse(localStorage.getItem("users"));
 
-      var developers = JSON.parse(localStorage.getItem("developers"));
-
-      for (var i = 0; i < developers.length; i++) {
-        console.log(developers[i].role == "developer");
-        if (developers[i].role == "developer") {
+      for (var i = 0; i < users.length; i++) {
+        console.log(users[i].role == "developer");
+        if (users[i].role == "developer") {
           tabdev += `<tr id="trDev">
                              <td>
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" id="checkDev"  onclick="addToTeam(${developers[i].idDev})">
+                                  <input class="form-check-input" type="checkbox" id="checkDev"  onclick="addToTeam(${users[i].idDev})">
                                   <span class="form-check-sign">
                                     <span class="check"></span>
                                   </span>
                                 </label>
                               </div>
                             </td>
-                            <td>${developers[i].userName}</td> `;
+                            <td>${users[i].userName}</td> `;
 
 
         }
-        if (developers[i].role == "designer") {
+        if (users[i].role == "designer") {
           tabdes += `<tr id="trDes">
                             <td>
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" id="checkDes"  onclick="addToTeam(${developers[i].idDev})">
+                                  <input class="form-check-input" type="checkbox" id="checkDes"  onclick="addToTeam(${users[i].idDev})">
                                   <span class="form-check-sign">
                                     <span class="check"></span>
                                   </span>
                                 </label>
                               </div>
                             </td>
-                            <td>${developers[i].userName}</td> `;
+                            <td>${users[i].userName}</td> `;
 
 
         }
-        if (developers[i].role == "other") {
+        if (users[i].role == "other") {
           tabother += `<tr id="trOther">
                             <td>
                               <div class="form-check">
                                 <label class="form-check-label">
-                                  <input class="form-check-input" type="checkbox" id="checkOther" onclick="addToTeam(${developers[i].idDev})">
+                                  <input class="form-check-input" type="checkbox" id="checkOther" onclick="addToTeam(${users[i].idDev})">
                                   <span class="form-check-sign">
                                     <span class="check"></span>
                                   </span>
                                 </label>
                               </div>
                             </td>
-                            <td>${developers[i].userName}</td> `;
+                            <td>${users[i].userName}</td> `;
 
 
         }
@@ -536,7 +536,11 @@
 
 
     }
+function addTeamDisplay(){
+      document.getElementById("divAddTeam").style.display = "block";
+      displayCrew();
 
+}
 
     function addToTeam(id) {
 
@@ -557,12 +561,17 @@
 
       //empty newTeam from local storage 
       localStorage.removeItem("newTeam");
+      
+      
 
     }
 
-    function diplayTeam() {
+    function displayTeam() {
+      document.getElementById("divAddTeam").style.display = "none";
+      document.getElementById("divDisplayTeam").style.display = "block";
+
       var teams = JSON.parse(localStorage.getItem("teams")) || [];
-      var developers = JSON.parse(localStorage.getItem("developers")) || [];
+      var users = JSON.parse(localStorage.getItem("users")) || [];
       var teamsDisplay = ``;
       for (let i = 0; i < teams.length; i++) {
         var rowTeam = `
@@ -573,7 +582,7 @@
                   <h4 class="card-title" style="text-align: right;"> ${teams[i].teamName}
                     <a href="#editTeam" onclick="" class="btn btn-primary btn-link btn-sm">
                       <i class="material-icons">edit</i></a>
-                    <a href="#removeTeam" onclick="" class="btn btn-danger btn-link btn-sm">
+                    <a href="#removeTeam" onclick="removeTeam(${teams[i].idTeam})" class="btn btn-danger btn-link btn-sm">
                       <i class="material-icons">close</i></a>
                   </h4>
                 </div>
@@ -592,16 +601,16 @@
 
         for (let j = 0; j < crew.length; j++) {
 
-          for (let k = 0; k < developers.length; k++) {
+          for (let k = 0; k < users.length; k++) {
 
-            if (crew[j] == developers[k].idDev) {
-              console.log(crew[j] == developers[k].idDev);
+            if (crew[j] == users[k].idDev) {
+              console.log(crew[j] == users[k].idDev);
 
               rowTeam += `  
                       <tr>
-                        <td>${developers[k].userName}</td>
-                        <td>${developers[k].email}</td>
-                        <td>${developers[k].role}</td>
+                        <td>${users[k].userName}</td>
+                        <td>${users[k].email}</td>
+                        <td>${users[k].role}</td>
                       </tr>
                     `;
             }
@@ -610,7 +619,7 @@
 
 
         }
-        console.log(rowTeam + "endCrewFor");
+        
         rowTeam += `</tbody>
                   </table>
                 </div>
@@ -624,6 +633,25 @@
 
 
       document.getElementById("divDisplayTeam").innerHTML = teamsDisplay;
+    }
+
+    function removeTeam(idTeam){
+      var teams = JSON.parse(localStorage.getItem('teams'));
+      for (var i = 0; i < teams.length; i++) {
+        // console.log(id +" delete function boucle for");
+
+        if (teams[i].idTeam == idTeam) {
+
+          teams.splice(i, 1);
+
+        }
+
+      }
+      localStorage.setItem("teams", JSON.stringify(teams));
+
+
+      //display table after action
+      this.displayTeam();
     }
   </script>
 </body>
