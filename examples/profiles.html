@@ -626,7 +626,7 @@
 
 
     function updateProfile(idDev) {
-      console.log("updateProfile function");
+      
 
       var developers = JSON.parse(localStorage.getItem('developers'));
 
@@ -646,7 +646,7 @@
 
       for(var i = 0; i < developers.length; i++)
       {
-        console.log(developers[i].idDev==idDev);
+        
         if(developers[i].idDev==idDev){
           
           developers.splice(i, 1, { "idDev": idDev,  "userName": document.getElementById("edituserName").value, "email": document.getElementById("editemail").value, "password": document.getElementById("editpassword").value, "role": role,});
@@ -656,6 +656,7 @@
       
 
       localStorage.setItem("developers", JSON.stringify(developers));
+      document.getElementById("divEditProfile").style.display = "none";
 
     }
   </script>
