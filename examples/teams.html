@@ -22,7 +22,7 @@
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body onload="displayCrew()">
+<body onload="displayCrew();diplayTeam()">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
@@ -76,81 +76,17 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="container-fluid">
-          <div class="row" id="divDisplayTeam">
-            <!-- team list -->
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-success">
+        <div class="container-fluid" id="divDisplayTeam">
+        </div>
+      </div>
+      <!-- end display team list -->
 
-                  <h4 class="card-title" style="text-align: right;"> Team1
-                    <a href="#editTeam" onclick="" class="btn btn-primary btn-link btn-sm">
-
-                      <i class="material-icons">edit</i></a>
-                    <a href="#removeTeam" onclick="" class="btn btn-danger btn-link btn-sm">
-
-
-                      <i class="material-icons">close</i></a>
-
-                  </h4>
-
-                </div>
-                <div class="card-body table-responsive">
-
-                  <input type="text" id="myInput" onkeyup="myFunction()" class="form-control"
-                    placeholder="Search for profiles.." title="Type in a name">
-
-
-                  <table class="table table-hover" id="divTeam">
-                    <thead class="text-warning">
-                      <th>ID</th>
-                      <th>Email</th>
-                      <th>Project</th>
-                      <th>Role</th>
-                      <th></th>
-                    </thead>
-                    <tbody>
-                      <tr onclick="editTeamDisplay()">
-                        <td>1</td>
-                        <td>Salma</td>
-                        <td>Scrumy</td>
-                        <td>Developer</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Jassem</td>
-                        <td>Scrumy</td>
-                        <td>Developer</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end display team list -->
-
-          <!-- add team  
+      <!-- add team  
                           display list of developers and choose from it to create a team
                           we add the details of affecting a team to a certain project  
                         -->
+      <div class="content">
+        <div class="container-fluid" id="divDisplayTeam">
           <div class="row" id="divAddTeam">
             <div class="col-lg-4 col-md-12">
               <div class="card">
@@ -246,17 +182,17 @@
             <!-- end add team -->
           </div>
 
-<div class="row" >
-  <div>   <button type="button" rel="tooltip" class="btn btn-primary btn-link btn-sm" onclick="createTeam()">
-                    Create Team
-    </button>
-<input    type="text" id="teamName"></div>
-</div>
+          <div class="row">
+            <div> <button type="button" rel="tooltip" class="btn btn-primary btn-link btn-sm" onclick="createTeam()">
+                Create Team
+              </button>
+              <input type="text" id="teamName"></div>
+          </div>
         </div>
 
-      </div>
+      </div></div>  
     </div>
-    <footer class="footer">
+    <!-- <footer class="footer">
       <div class="container-fluid">
         <nav class="float-left">
           <ul>
@@ -290,7 +226,7 @@
           <a href="https://www.creative-tim.com" target="_blank">SCRUMY</a> for a better web.
         </div>
       </div>
-    </footer>
+    </footer> -->
   </div>
   </div>
   <div class="fixed-plugin">
@@ -566,7 +502,7 @@
       var tabdev = ` `;
       var tabdes = ``;
       var tabother = ``;
-      
+
       var developers = JSON.parse(localStorage.getItem("developers"));
 
       for (var i = 0; i < developers.length; i++) {
@@ -584,7 +520,7 @@
                               </div>
                             </td>
                             <td>${developers[i].userName}</td> `;
-                         
+
 
         }
         if (developers[i].role == "designer") {
@@ -601,7 +537,7 @@
                             </td>
                             <td>${developers[i].userName}</td> `;
 
-                            
+
         }
         if (developers[i].role == "other") {
           tabother += `<tr id="trOther">
@@ -616,7 +552,7 @@
                               </div>
                             </td>
                             <td>${developers[i].userName}</td> `;
-                            
+
 
         }
       }
@@ -630,40 +566,98 @@
       document.getElementById("developerList").innerHTML = tabdev;
       document.getElementById("designerList").innerHTML = tabdes;
       document.getElementById("otherList").innerHTML = tabother;
-     
 
-    
+
+
     }
 
 
-    function addToTeam(id){
-     
-      var newTeam  = JSON.parse(localStorage.getItem("newTeam")) || [];
+    function addToTeam(id) {
+
+      var newTeam = JSON.parse(localStorage.getItem("newTeam")) || [];
       newTeam.push(id);
-      localStorage.setItem("newTeam",JSON.stringify(newTeam));
+      localStorage.setItem("newTeam", JSON.stringify(newTeam));
     }
 
-    function createTeam(){
-      var developers  = JSON.parse(localStorage.getItem("developers")) || [];
-      var newTeam  = JSON.parse(localStorage.getItem("newTeam")) || [];
+    function createTeam() {
+      // var developers  = JSON.parse(localStorage.getItem("developers")) || [];
+      var newTeam = JSON.parse(localStorage.getItem("newTeam"));
 
-      var teams  = JSON.parse(localStorage.getItem("teams")) || [];
-      teams.push({"idTeam":Math.floor(Math.random() * 1000 + 1) ,"teamName": document.getElementById("teamName").value,});
-     
-      for(var i=0; i<newTeam.length;i++){
-        for (let j = 0; j < developers.length; j++) {
-          if(newTeam[i]== developers[j].idDev){
-            teams.push({"idTeam":Math.floor(Math.random() * 1000 + 1) ,"teamName": document.getElementById("teamName").value,});
+      var teams = JSON.parse(localStorage.getItem("teams")) || [];
 
-            teams.push(developers[j].idDev);
-                    }
-        } }
-        
-        localStorage.setItem("teams",JSON.stringify(teams));
+      teams.push({ "idTeam": Math.floor(Math.random() * 1000 + 1), "teamName": document.getElementById("teamName").value, crew: newTeam, });
+
+      localStorage.setItem("teams", JSON.stringify(teams));
 
       //empty newTeam from local storage 
-      //  localStorage.removeItem("newTeam");
+      localStorage.removeItem("newTeam");
 
+    }
+
+    function diplayTeam() {
+      var teams = JSON.parse(localStorage.getItem("teams")) || [];
+      var developers = JSON.parse(localStorage.getItem("developers")) || [];
+      var teamsDisplay = ``;
+      for (let i = 0; i < teams.length; i++) {
+        var rowTeam = `
+          <div class="row" >
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-success">
+                  <h4 class="card-title" style="text-align: right;"> ${teams[i].teamName}
+                    <a href="#editTeam" onclick="" class="btn btn-primary btn-link btn-sm">
+                      <i class="material-icons">edit</i></a>
+                    <a href="#removeTeam" onclick="" class="btn btn-danger btn-link btn-sm">
+                      <i class="material-icons">close</i></a>
+                  </h4>
+                </div>
+                <div class="card-body table-responsive">
+                  <input type="text" id="myInput" onkeyup="myFunction()" class="form-control"
+                    placeholder="Search for profiles.." title="Type in a name">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>User Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                    </thead>
+                    <tbody>`;
+        var crew = teams[i].crew;
+        console.log(crew);
+
+        for (let j = 0; j < crew.length; j++) {
+
+          for (let k = 0; k < developers.length; k++) {
+
+            if (crew[j] == developers[k].idDev) {
+              console.log(crew[j] == developers[k].idDev);
+
+              rowTeam += `  
+                      <tr>
+                        <td>${developers[k].userName}</td>
+                        <td>${developers[k].email}</td>
+                        <td>${developers[k].role}</td>
+                      </tr>
+                    `;
+            }
+
+          }
+
+
+        }
+        console.log(rowTeam + "endCrewFor");
+        rowTeam += `</tbody>
+                  </table>
+                </div>
+              </div>
+              </div></div>
+            `;
+
+        teamsDisplay += rowTeam;
+
+      }
+
+
+      document.getElementById("divDisplayTeam").innerHTML = teamsDisplay;
     }
   </script>
 </body>
