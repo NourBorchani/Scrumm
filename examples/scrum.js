@@ -39,9 +39,10 @@ function displayBacklog()
 
 
           html += `<div id ="${todoTable[i].id}" class="card" draggable="true" ondragstart="drag(event)">
-          <div class="card-header card-header-info">
+          <div class="card-header card-header-info" style=" height: 100px;width: 50%;">
+          
       
-          <button class="button button-progress"  onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+          <button class="button button-progress"  onclick='moveInprogress(${todoTable[i].id})'>InProgress</button>
        
           <button type="button"  onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
           </div>
@@ -68,13 +69,13 @@ function displayInProgress()
           html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
           
         
-          <div class="card-header card-header-warning" >
-          <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
+          <div class="card-header card-header-warning" style=" height: 135px;width: 100%;"  >
+          <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})' >Backlog</button>
       
-          <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
+          <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>InReview</button>
           
           
-          <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
+          <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete" >Delete</button>
          
          </div>
          <div class="card-body">
@@ -96,11 +97,13 @@ function displayInReview()
           console.log(todoTable);
 
           html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
-          <div class="card-header card-header-danger">
+          <div class="card-header card-header-danger" style=" height: 100px;width: 50%;"  >
           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})' >Backlog</button>
-          <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+          <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>InProgress</button>
+          </div>
+          <div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
+          <div class="card-header card-header-danger" style=" height: 100px;width: 50%;"  >
           <button class="button button-done" onclick='moveDone(${todoTable[i].id})'>Done</button>
-
           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
           </div>        
         
@@ -124,9 +127,28 @@ function displayDone()
       if (todoTable[i].etat=="done")
       {
           console.log(todoTable);
+          /*<div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">content_copy</i>
+            </div>
+            <p class="card-category">Used Space</p>
+            <h3 class="card-title">49/50
+              <small>GB</small>
+            </h3>
+          </div>
+          //<div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-danger">warning</i>
+             
+            </div>
+          </div>
+        </div>
+      </div>*/
 
           html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
-          <div class="card-header card-header-success">
+          <div class="card-header  card-header-success"      >
           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
           <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
