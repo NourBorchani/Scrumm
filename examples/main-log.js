@@ -86,8 +86,8 @@ function functionUser() {
 
 function BtnRegister() {
 
-   
-    var tableur = JSON.parse(localStorage.getItem('user'));
+
+    var tableur = JSON.parse(localStorage.getItem('users'));
     console.log(tableur);
     if (tableur == null) {
         var tableur = [];
@@ -95,19 +95,20 @@ function BtnRegister() {
     }
 
 
-    var userPO = {
-        id : Math.floor(Math.random() * 1000) + 1,
-        userName: document.getElementById('Username').value,        
-        Mail: document.getElementById('Mail').value,        
-        Password: document.getElementById('Password').value,       
-        
+    var users = {
+        id: Math.floor(Math.random() * 1000) + 1,
+        userName: document.getElementById('Username').value,
+        Mail: document.getElementById('Mail').value,
+        Password: document.getElementById('Password').value,
+        role: ["PO","developers","designer"],
+
     }
-    tableur.push(userPO)
+    tableur.push(user)
 
 
-    localStorage.setItem('userPO',JSON.stringify(tableur))
+    localStorage.setItem('users', JSON.stringify(tableur))
 
-    
+
 }
 
 
@@ -115,31 +116,37 @@ function BtnRegister() {
 
 
 function connexion() {
-    var tabuser = JSON.parse(localStorage.getItem('userPO'));
+    var tabuser = JSON.parse(localStorage.getItem('users'));
     var Mail = document.getElementById('log');
     var log = document.getElementById('psw');
     console.log(tabuser);
     var test = false;
     // console.log(test);
-    for (i = 0; i < tabuser.length; i++) {
+    for (var i = 0; i < tabuser.length; i++) {
         console.log("for button login");
-    // console.log(test);
-        
-        if (tabuser[i].Password == log.value && tabuser[i].Mail == Mail.value) {
-        //    console.log("if button login");
-            test = true;      
-           location.href ="./dashboard.html";     
-           localStorage.setItem('connected', JSON.stringify(tabuser[i]));
-           }
-        //    else {
-        // var tabdev = JSON.parse(localStorage.getItem('userDev'));
-        // if(tabdev.Mail == Mail.value){
-        //     test = true;      
-        //     location.href ="./dashboard.html";     
-        //     localStorage.setItem('connected', JSON.stringify(tabuser[i]));
-        // }
-        //  in dashboar depending on the user role, the section projects is desplayed or not. (block o none)
-           }
+        // console.log(test);
 
+        if (tabuser[i].password == log.value && tabuser[i].email == Mail.value ) {
+            //    console.log("if button login");
+            test = true;
+            location.href = "./dashboard.html";
+            localStorage.setItem('connected', JSON.stringify(tabuser[i]));
+        }
+
+     }
+     var tabuser = JSON.parse(localStorage.getItem('users'));
+     for (let i = 0; i < tabuser.length; i++) {
+            console.log(tabuser[i].email == Mail.value);
+            if (tabuser[i].email == Mail.value && tabuser[i].password == log.value  ){ 
+
+                test = true;
+                location.href = "./dashboard.html";
+                var utilisateur = [];
+                utilisateur.push(developers[i].idDev);
+                utilisateur.push(developers[i].role);
+               
+                localStorage.setItem('connected', JSON.stringify(utilisateur));
+            }
+        }
     }
-      
+
