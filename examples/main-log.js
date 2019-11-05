@@ -98,12 +98,12 @@ function BtnRegister() {
     var users = {
         id: Math.floor(Math.random() * 1000) + 1,
         userName: document.getElementById('Username').value,
-        Mail: document.getElementById('Mail').value,
-        Password: document.getElementById('Password').value,
-        role: ["PO","developers","designer"],
+        email: document.getElementById('Mail').value,
+        password: document.getElementById('Password').value,
+        role: "PO",
 
     }
-    tableur.push(user)
+    tableur.push(users)
 
 
     localStorage.setItem('users', JSON.stringify(tableur))
@@ -117,36 +117,39 @@ function BtnRegister() {
 
 function connexion() {
     var tabuser = JSON.parse(localStorage.getItem('users'));
-    var Mail = document.getElementById('log');
-    var log = document.getElementById('psw');
+    var Mail = document.getElementById('log').value;
+    var log = document.getElementById('psw').value;
     console.log(tabuser);
     var test = false;
     // console.log(test);
     for (var i = 0; i < tabuser.length; i++) {
-        console.log("for button login");
-        // console.log(test);
+        console.log( "pass"+log);
+        console.log( "tabuser[i].password"+tabuser[i].password );
+        console.log("tabuser[i].email == Mail"+tabuser[i].email == Mail);
+        console.log(tabuser[i].password == log && tabuser[i].email == Mail);
 
-        if (tabuser[i].password == log.value && tabuser[i].email == Mail.value ) {
+        if (tabuser[i].password == log && tabuser[i].email == Mail) {
             //    console.log("if button login");
             test = true;
-            location.href = "./dashboard.html";
             localStorage.setItem('connected', JSON.stringify(tabuser[i]));
+            
+            location.href = "./dashboard.html";
         }
+            
 
-     }
-     var tabuser = JSON.parse(localStorage.getItem('users'));
-     for (let i = 0; i < tabuser.length; i++) {
-            console.log(tabuser[i].email == Mail.value);
-            if (tabuser[i].email == Mail.value && tabuser[i].password == log.value  ){ 
-
-                test = true;
-                location.href = "./dashboard.html";
-                var utilisateur = [];
-                utilisateur.push(developers[i].idDev);
-                utilisateur.push(developers[i].role);
-               
-                localStorage.setItem('connected', JSON.stringify(utilisateur));
-            }
-        }
     }
+    //  var tabuser = JSON.parse(localStorage.getItem('users'));
+    //  for (let i = 0; i < tabuser.length; i++) {
+    //         // console.log(tabuser[i].email == email.value);
+    //         if (tabuser[i].Mail == Mail.value && tabuser[i].password == log.value  ){ 
+
+    //             test = true;
+    //             location.href = "./dashboard.html";
+
+
+
+    //             localStorage.setItem('connected', JSON.stringify(user));
+    //         }
+    //     }
+}
 

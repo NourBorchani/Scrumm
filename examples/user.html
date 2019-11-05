@@ -34,7 +34,7 @@
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 </head>
 
-<body class="">
+<body onload="displayProfiles()">
   <div class="wrapper ">
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
       <!--
@@ -195,13 +195,13 @@
                       <div class="col-md-5">
                         <div class="form-group">
                           <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" id="Usr">
                         </div>
                       </div>
                       <div class="col-md-5">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control">
+                          <input type="email" class="form-control" id="emailPrf">
                         </div>
                       </div>
                     </div>
@@ -220,14 +220,20 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12">
+                      <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Adress</label>
-                          <input type="text" class="form-control">
+                          <label class="bmd-label-floating">password</label>
+                          <input type="text" class="form-control" id="pss">
                         </div>
                       </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Role</label>
+                            <input type="text" class="form-control" id="rolePrf">
+                          </div>
+                        </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">City</label>
@@ -257,7 +263,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <button type="submit" class="btn btn-primary pull-right" onclick="">Update Profile</button>
                     <div class="clearfix"></div>
                   </form>
@@ -604,6 +610,21 @@
         });
       });
     });
+
+    function displayProfiles(){
+      var Profile = JSON.parse(localStorage.getItem("connected"));
+
+      document.getElementById("Usr") = Profile.userName;
+      document.getElementById("emailPrf") = Profile.email;
+      document.getElementById("pss") = Profile.Password;
+      document.getElementById("rolePrf") = Profile.role;
+    
+
+    }
+
+
+
+
   </script>
 </body>
 
