@@ -274,12 +274,13 @@ function moveInReview(id) {
 
 
 function displayTask() {
-  var utilisateur = JSON.parse(localStorage.getItem('connected'));
+  var connected = JSON.parse(localStorage.getItem('connected'));
 
-console.log('hqhqhqhqhqhqhahahahah');
-console.log((utilisateur[1] == "developer"));
+console.log('diplay task');
+console.log((connected.role == "developer"));
 
-  if (utilisateur[1] == "developer") {
+
+  if (connected.role == "developer") {
     document.getElementById('prj').style.display = 'none';
     document.getElementById('prf').style.display = 'none';
     document.getElementById('Team').style.display = 'none';
@@ -289,14 +290,10 @@ console.log((utilisateur[1] == "developer"));
 }
 
 function logout(){
-  var user = JSON.parse(localStorage.getItem('connected'));
-  for (let i = 0; i < user.length; i++) {
-    if (user[i].id == id) {
-      user.splice(user[i], 1);
-      
-    }
-    
-    
-  }
+  
+  localStorage.removeItem("connected");
+  location.href = "./main-log.html";
+
+  
 }
 

@@ -183,17 +183,17 @@
           </div>
 
           <div class="row">
-            <div> 
-                
-                    <label class="bmd-label-floating"  >My new team is named</label>
-                    <input type="text" class="form-control" id="teamName">
-                    <button class="btn btn-primary btn-round" type="button" rel="tooltip"  onclick="createTeam()">
-                        Add Team
-                      </button>
-                  
-                
-                
-              </div>
+            <div>
+
+              <label class="bmd-label-floating">My new team is named</label>
+              <input type="text" class="form-control" id="teamName">
+              <button class="btn btn-primary btn-round" type="button" rel="tooltip" onclick="createTeam()">
+                Add Team
+              </button>
+
+
+
+            </div>
           </div>
         </div>
 
@@ -549,8 +549,8 @@
     function addTeamDisplay() {
       // document.getElementById("divDisplayTeam").style.display = "none";
       document.getElementById("divAddTeam").style.display = "block";
-     
-      
+
+
       displayCrew();
 
     }
@@ -575,7 +575,7 @@
       //empty newTeam from local storage 
       localStorage.removeItem("newTeam");
 
-      
+
 
 
     }
@@ -658,9 +658,9 @@
         var teams = JSON.parse(localStorage.getItem('teams'));
 
         for (var i = 0; i < teams.length; i++) {
-        
+
           // console.log(id +" delete function boucle for");
-          
+
           if (teams[i].id == id) {
             teams.splice(i, 1);
             localStorage.setItem("teams", JSON.stringify(teams));
@@ -679,8 +679,8 @@
 
     }
 
-    function removefromTeam(iduser, idteam){
-     
+    function removefromTeam(iduser, idteam) {
+
       var conf = confirm("Do you want to remove this member from the team");
       if (conf) {
 
@@ -689,24 +689,25 @@
 
         for (var i = 0; i < teams.length; i++) {
           // console.log(id +" delete function boucle for");
-          console.log(teams[i].id==idteam);
-          console.log("teams[i].id"+teams[i].id);
-          console.log("idteam"+idteam);
-          if(teams[i].id==idteam){
-          var crew= teams[i].crew;
-          for (let j = 0; j< crew.length; j++) {
-            console.log(crew[j] == iduser);
-            if (crew[j] == iduser) {
-              crew.splice(j, 1);
-              localStorage.setItem("teams", JSON.stringify(teams));
-            //display table after action
-            this.displayTeam();
-            return true;
-            
+          console.log(teams[i].id == idteam);
+          console.log("teams[i].id" + teams[i].id);
+          console.log("idteam" + idteam);
+          if (teams[i].id == idteam) {
+            var crew = teams[i].crew;
+            for (let j = 0; j < crew.length; j++) {
+              console.log(crew[j] == iduser);
+              if (crew[j] == iduser) {
+                crew.splice(j, 1);
+                localStorage.setItem("teams", JSON.stringify(teams));
+                //display table after action
+                this.displayTeam();
+                return true;
+
+              }
+
+            }
           }
-            
-          }}
-         
+
         }
 
       }

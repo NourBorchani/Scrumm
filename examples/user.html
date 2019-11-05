@@ -177,7 +177,7 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12 col-lg-12">
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title">Edit Profile</h4>
@@ -186,22 +186,22 @@
                 <div class="card-body">
                   <form>
                     <div class="row">
-                      <div class="col-md-1">
+                      <div class="col-md-">
                         <!-- <div class="form-group">
                           <label class="bmd-label-floating">Company (disabled)</label>
                           <input type="text" class="form-control" disabled>
                         </div> -->
                       </div>
-                      <div class="col-md-5">
+                      <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control" id="Usr">
+                          <label class="bmd-label-floating">User Name</label>
+                          <input type="text" class="form-control" id="userName">
                         </div>
                       </div>
-                      <div class="col-md-5">
+                      <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control" id="emailPrf">
+                          <label class="bmd-label-floating">Email Address</label>
+                          <input type="email" class="form-control" id="email">
                         </div>
                       </div>
                     </div>
@@ -222,14 +222,14 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="bmd-label-floating">password</label>
-                          <input type="text" class="form-control" id="pss">
+                          <label class="bmd-label-floating">Password</label>
+                          <input type="text" class="form-control" id="password">
                         </div>
                       </div>
                       <div class="col-md-6">
                           <div class="form-group">
                             <label class="bmd-label-floating">Role</label>
-                            <input type="text" class="form-control" id="rolePrf">
+                            <input type="text" class="form-control" id="role">
                           </div>
                         </div>
                     </div>
@@ -264,13 +264,13 @@
                         </div>
                       </div>
                     </div> -->
-                    <button type="submit" class="btn btn-primary pull-right" onclick="">Update Profile</button>
+                    <button type="submit" class="btn btn-primary pull-right" onclick="update()">Update Profile</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <div class="card card-profile">
                 <div class="card-avatar">
                   <a href="#pablo">
@@ -291,7 +291,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
@@ -612,16 +612,25 @@
     });
 
     function displayProfiles(){
-      var Profile = JSON.parse(localStorage.getItem("connected"));
+      var connected = JSON.parse(localStorage.getItem("connected"));
 
-      document.getElementById("Usr") = Profile.userName;
-      document.getElementById("emailPrf") = Profile.email;
-      document.getElementById("pss") = Profile.Password;
-      document.getElementById("rolePrf") = Profile.role;
+      document.getElementById("userName").value = connected.userName;
+      document.getElementById("email").value = connected.email;
+      document.getElementById("password").value = connected.password;
+      document.getElementById("role").value = connected.role;
     
 
     }
+    function update(){
+      var users = JSON.parse(localStorage.getItem("users"));
 
+      document.getElementById("userName").value = users.userName;
+      document.getElementById("email").value = users.email;
+      document.getElementById("password").value = users.password;
+      document.getElementById("role").value = users.role;
+
+      localStorage.setItem('users', JSON.stringify(users));
+    }
 
 
 
