@@ -35,7 +35,128 @@
   <link href="../assets/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <style>
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
 
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #888;
+      width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    @keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    /* The Close Button */
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-header {
+      padding: 2px 16px;
+      background-color: #9C27B0;
+      color: white;
+    }
+
+    .modal-body {
+      padding: 2px 16px;
+    }
+
+    .modal-footer {
+      padding: 2px 16px;
+      background-color: #9C27B0;
+      color: white;
+    }
+
+    #edit {
+      display: inline-block;
+      padding: 10px;
+      background: linear-gradient(#79a6e2 2%, #3366aa 5%, #1e4e8e);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0px 3px 0px #113c75,
+        0px 5px 5px #333;
+      margin-right: 5px;
+
+    }
+
+    #save {
+      display: inline-block;
+      padding: 10px;
+      background: linear-gradient(#79a6e2 2%, #3366aa 5%, #1e4e8e);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0px 3px 0px #113c75,
+        0px 5px 5px #333;
+      margin-right: 5px;
+
+    }
+  </style>
 </head>
 
 <body onload="displayTask()">
@@ -61,7 +182,7 @@
           </li>
           <li class="nav-item" id="prj">
             <a class="nav-link" href="./projects.html">
-              <i class="material-icons">card_giftcard</i>
+              <i class="material-icons">dashboard</i>
               <p>Projects</p>
             </a>
           </li>
@@ -124,7 +245,7 @@
               <i class="material-icons">unarchive</i>
               <p>Upgrade to PRO</p>
             </a>
-          </li> --> 
+          </li> -->
         </ul>
       </div>
     </div>
@@ -255,14 +376,14 @@
                 </div>
           
               </div>
-            </div>
+            </div>!-->
             
   </div>
-  </div><!-->
+  </div><!--
                 <div ng-app="ScrumApp">
                   <div>
                     <div class="form">
-                      <!-- <h1>Simple Scrum Board</h1> -->
+                       <h1>Simple Scrum Board</h1> -->
                       <link rel="stylesheet" href="scrum.css">
                       <input type="text" placeholder="As a User I can do ..." id="task" />
                       <!-- <input type="text" placeholder="developer" /> -->
