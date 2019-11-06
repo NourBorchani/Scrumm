@@ -258,9 +258,7 @@
                         </div>
                       </div>
                     </div>
-                    <!-- team display -->
-                   
-                    <!-- end team display -->
+
                     <div class="row">
                       <div class="col-md-12">
                         <label class="bmd-label-floating">Start Date</label>
@@ -269,6 +267,26 @@
                         </div>
                       </div>
                     </div>
+
+                    <!-- team display -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <label class="bmd-label-floating">Teams</label>
+                        <div class="form-group">
+                          <form>
+                            <select id="myForm" class="form-control" multiple></select>
+                            
+
+                          </form>
+                          <p>Press CTRL and click above button to select multiple options at once.</p>
+                          <script>
+
+
+                          </script>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- end team display -->
                     <button type="submit" class="btn btn-primary pull-right" style="background-color: #ff9100 ;"
                       onclick="addProject()">Add Project</button>
                     <div class="clearfix"></div>
@@ -464,6 +482,7 @@
   <script src="../assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
+ 
   <script>
 
     function editProjectDisplay(idProject) {
@@ -496,6 +515,22 @@
       document.getElementById("divAddProject").style.display = "block";
 
 
+      //start display teams in add project
+      var options = `<select  class="form-control-lg " multiple >`;
+      var teams = JSON.parse(localStorage.getItem('teams'));
+
+      // console.log(options);
+      // console.log(teams);
+      for (let i = 0; i < teams.length; i++) {
+        options += `<option value=${teams[i].id}>${teams[i].teamName}</option> `;
+      }
+
+      options += `</select>`
+
+
+      document.getElementById("myForm").innerHTML = options;
+
+      //display teams in add project
     }
     function ProjectDisplay() {
       document.getElementById("divAddProject").style.display = "none";
@@ -510,9 +545,11 @@
                       <th>Description</th>
                       <th>technology</th>
                       <th>Start Date</th>
+                      <th>teams</th>
                     </thead>
                     <tbody> `;
       var projects = JSON.parse(localStorage.getItem("projects"));
+      var teams = JSON.parse(localStorage.getItem("teams"));
 
       for (var i = 0; i < projects.length; i++) {
         tab += `
@@ -524,8 +561,17 @@
                     <td>${projects[i].description}</td>
                     <td>${projects[i].technology}</td>
                     <td>${projects[i].startDate}</td>
-                </tr>
-            `;
+                    <td>
+                    `;
+        for (let j = 0; j < projects[i].teams.length; j++) {
+          for (let k = 0; k < teams.length; k++) {
+           if(projects[i].teams[j]==teams[k].id){
+             tab += `${teams[k].teamName}    `;
+           }
+          }
+        }
+
+        tab += `</td></tr>`;
 
       }
 
@@ -712,6 +758,7 @@
       md.initDashboardPageCharts();
 
     });
+    var el = document.getElementsByTagName('select')[0];
     function addProject() {
       projectName = document.getElementById("projectName").value;
       description = document.getElementById("description").value;
@@ -726,15 +773,46 @@
       }
 
 
-      projects.push({ idProject: Math.floor(Math.random() * 1000 + 1), "projectName": projectName, "description": description, "client": client, "startDate": startDate, "technology": technology, });
+      var idTeams = getSelectValues(el);
+
+      projects.push({ idProject: Math.floor(Math.random() * 1000 + 1), "projectName": projectName, "description": description, "client": client, "startDate": startDate, "technology": technology, "teams": idTeams });
 
       localStorage.setItem("projects", JSON.stringify(projects));
       ProjectDisplay();
-
     }
+
+    function getSelectValues(select) {
+
+      var result = [];
+      var options = select && select.options;
+      var opt;
+
+      for (var i = 0, iLen = options.length; i < iLen; i++) {
+        opt = options[i];
+
+        if (opt.selected) {
+          result.push(opt.value || opt.text);
+        }
+      }
+      console.log(result);
+      return result; // table containing selected teams
+    }
+
+
+
+
+
+
     function updateProject(idProject) {
       console.log(idProject);
     }
+
+
+
+
+
+
+
 
 
   </script>
