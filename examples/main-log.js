@@ -86,8 +86,8 @@ function functionUser() {
 
 function BtnRegister() {
 
-   
-    var tableur = JSON.parse(localStorage.getItem('user'));
+
+    var tableur = JSON.parse(localStorage.getItem('users'));
     console.log(tableur);
     if (tableur == null) {
         var tableur = [];
@@ -95,19 +95,20 @@ function BtnRegister() {
     }
 
 
-    var userPO = {
-        id : Math.floor(Math.random() * 1000) + 1,
-        userName: document.getElementById('Username').value,        
-        Mail: document.getElementById('Mail').value,        
-        Password: document.getElementById('Password').value,       
-        
+    var users = {
+        id: Math.floor(Math.random() * 1000) + 1,
+        userName: document.getElementById('Username').value,
+        email: document.getElementById('Mail').value,
+        password: document.getElementById('Password').value,
+        role: "PO",
+
     }
-    tableur.push(userPO)
+    tableur.push(users)
 
 
-    localStorage.setItem('userPO',JSON.stringify(tableur))
+    localStorage.setItem('users', JSON.stringify(tableur))
 
-    
+
 }
 
 
@@ -115,31 +116,40 @@ function BtnRegister() {
 
 
 function connexion() {
-    var tabuser = JSON.parse(localStorage.getItem('userPO'));
-    var Mail = document.getElementById('log');
-    var log = document.getElementById('psw');
+    var tabuser = JSON.parse(localStorage.getItem('users'));
+    var Mail = document.getElementById('log').value;
+    var log = document.getElementById('psw').value;
     console.log(tabuser);
     var test = false;
     // console.log(test);
-    for (i = 0; i < tabuser.length; i++) {
-        console.log("for button login");
-    // console.log(test);
-        
-        if (tabuser[i].Password == log.value && tabuser[i].Mail == Mail.value) {
-        //    console.log("if button login");
-            test = true;      
-           location.href ="./dashboard.html";     
-           localStorage.setItem('connected', JSON.stringify(tabuser[i]));
-           }
-        //    else {
-        // var tabdev = JSON.parse(localStorage.getItem('userDev'));
-        // if(tabdev.Mail == Mail.value){
-        //     test = true;      
-        //     location.href ="./dashboard.html";     
-        //     localStorage.setItem('connected', JSON.stringify(tabuser[i]));
-        // }
-        //  in dashboar depending on the user role, the section projects is desplayed or not. (block o none)
-           }
+    for (var i = 0; i < tabuser.length; i++) {
+        console.log( "pass"+log);
+        console.log( "tabuser[i].password"+tabuser[i].password );
+        console.log("tabuser[i].email == Mail"+tabuser[i].email == Mail);
+        console.log(tabuser[i].password == log && tabuser[i].email == Mail);
+
+        if (tabuser[i].password == log && tabuser[i].email == Mail) {
+            //    console.log("if button login");
+            test = true;
+            localStorage.setItem('connected', JSON.stringify(tabuser[i]));
+            
+            location.href = "./dashboard.html";
+        }
+            
 
     }
-      
+    //  var tabuser = JSON.parse(localStorage.getItem('users'));
+    //  for (let i = 0; i < tabuser.length; i++) {
+    //         // console.log(tabuser[i].email == email.value);
+    //         if (tabuser[i].Mail == Mail.value && tabuser[i].password == log.value  ){ 
+
+    //             test = true;
+    //             location.href = "./dashboard.html";
+
+
+
+    //             localStorage.setItem('connected', JSON.stringify(user));
+    //         }
+    //     }
+}
+
