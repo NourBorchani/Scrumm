@@ -1,4 +1,3 @@
-
 function addTask() {
   var task = document.getElementById('task').value;
   var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -10,13 +9,13 @@ function addTask() {
   console.log(task);
   var todo = {
     id: Math.floor((Math.random() * 1000) + 1),
-    task: task, 
-    etat: "backlog" ,
-}
-todoTable.push(todo)
-localStorage.setItem('tasks', JSON.stringify(todoTable));
-displayTask();
-document.getElementById('task').value = "";
+    task: task,
+    etat: "backlog",
+  }
+  todoTable.push(todo)
+  localStorage.setItem('tasks', JSON.stringify(todoTable));
+  displayTask();
+  document.getElementById('task').value = "";
 }
 
 function displayTask() {
@@ -36,17 +35,14 @@ function displayBacklog() {
       console.log(todoTable);
 
 
-          html += `<div id ="${todoTable[i].id}" class="card" draggable="true" ondragstart="drag(event)">
-          <div class="card-header card-header-info">
-      
-          <button class="button button-progress"  onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+      html += ` <div class="input-group overflow" style="background:white;" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
+      <h4 style="font-weight: bold;color:black;">${todoTable[i].task}</h4>
+     
+      <div class="input-group overflow" >
+     <button class="button button-progress"  onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
+     <button type="button"  onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>  
        
-          <button type="button"  onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
-          </div>
-          <div class="card-body">
-         <h4>${todoTable[i].task}</h4>
          
-       
          </div>
          </div>`
     }
@@ -61,21 +57,16 @@ function displayInProgress() {
     if (todoTable[i].etat == "inProgress") {
       console.log(todoTable);
 
-          html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
-          
-        
-          <div class="card-header card-header-warning" >
+      html += `<div class="input-group overflow" style="background:white;"id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
+      <h4 style="font-weight: bold;color:black;">${todoTable[i].task}</h4>
+     
+      <div class="input-group overflow" >
           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
       
           <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
           
           
-          <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
-         
-         
-         </div>
-         <div class="card-body">
-         <h4>${todoTable[i].task}</h4>
+          <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>   
 
          </div>
          </div>`
@@ -83,70 +74,104 @@ function displayInProgress() {
   }
   document.getElementById('tasksInprogress').innerHTML = html;
 }
+
 function displayInReview() {
   var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-  var html = `<h3>InReview </h3>`;
+  var html = `<h3  >InReview </h3>`;
   for (let i = 0; i < todoTable.length; i++) {
     if (todoTable[i].etat == "InReview") {
-      console.log(todoTable);
+      // console.log(todoTable);
 
-          html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
-          <div class="card-header card-header-danger"  >
-          <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})' >Backlog</button>
+      html += `<div class="input-group overflow" style="background:white;"id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
+      <h4 style="font-weight: bold;color:black;">${todoTable[i].task}</h4>
+     
+      <div class="input-group overflow" >
+         <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})' >Backlog</button>
           <button class="button button-done" onclick='moveDone(${todoTable[i].id})'>Done</button>
           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>InProgress</button>
           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
           </div>       
-         <div class="card-body">
-         <h4>${todoTable[i].task}</h4>
+         
+        
          </div>
          </div>`
     }
   }
   document.getElementById('tasksInreview').innerHTML = html;
 }
+
 function displayDone() {
 
   var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-  var html = `<h3>Done </h3>`;
+  var html = `<h3  > Done </h3>`;
   for (let i = 0; i < todoTable.length; i++) {
     if (todoTable[i].etat == "done") {
-      console.log(todoTable);
+      // console.log(todoTable);
 
-          html += `<div class="card" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
-          <div class="card-header  card-header-success"    >
+      html += ` <div class="input-group overflow" style="background:white;"id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
+         <h4 style="font-weight: bold;color:black;">${todoTable[i].task}</h4>
+        
+         <div class="input-group overflow" >
+     
           <button class="button button-backlog" onclick='moveBacklog(${todoTable[i].id})'>Backlog</button>
           <button class="button button-review" onclick='moveInReview(${todoTable[i].id})'>In Review</button>
           <button class="button button-progress" onclick='moveInprogress(${todoTable[i].id})'>In Progress</button>
           <button type="button" onclick='deleteTask(${todoTable[i].id})' class="button button-delete">Delete</button>
         </div>
-         <div class="card-body">
-         <h4>${todoTable[i].task}</h4>
-         </div>
          </div>`
     }
   }
   document.getElementById('tasksInDone').innerHTML = html;
 }
+
 function deleteTask(id) {
-  var conf = confirm("Is This goodbye");
-  if (conf) {
-    var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-            
-    for (let i=0 ; i<todoTable.length ;i++ )  
-    {
-        if (todoTable[i].id==id)
-        {
-            todoTable.splice(i, 1);
-            localStorage.setItem('tasks', JSON.stringify(todoTable));
-            displayTask();
-            return true;
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+
+      var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+
+      for (let i = 0; i < todoTable.length; i++) {
+        if (todoTable[i].id == id) {
+          todoTable.splice(i, 1);
+          localStorage.setItem('tasks', JSON.stringify(todoTable));
+          displayTask();
+          return true;
         }
-    } 
-  }   
-    return false;
-  
+      }
+    }
+  })
+  return false;
 }
+
+function moveInprogress(id) {
+  var task = document.getElementById('task').value;
+  var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+  for (let i = 0; i < todoTable.length; i++) {
+    if (todoTable[i].id == id) {
+      todoTable[i].etat = "inProgress";
+    }
+  }
+  localStorage.setItem('tasks', JSON.stringify(todoTable));
+  displayTask()
+}
+
+
+//var conf = confirm("Is This goodbye");
+//if (conf) {
+
 
 // 
 function moveBacklog(id) {
@@ -174,91 +199,6 @@ function moveInprogress(id) {
   displayTask()
 }
 
-     //
-     function moveDone (id )
-     {
-      var task = document.getElementById('task').value;
-      var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-      for (let i=0;i<todoTable.length;i++)
-      {
-        if (todoTable[i].id==id)
-        {
-          todoTable[i].etat="done";
-        }
-      }
-      localStorage.setItem('tasks', JSON.stringify(todoTable));
-      displayTask()
-     }  
-     function moveDone (id )
-     {
-      var task = document.getElementById('task').value;
-      var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-      for (let i=0;i<todoTable.length;i++)
-      {
-        if (todoTable[i].id==id)
-        {
-          todoTable[i].etat="done";
-        }
-      }
-      localStorage.setItem('tasks', JSON.stringify(todoTable));
-      displayTask()
-     }   
-     function moveInReview (id )
-     {
-      var task = document.getElementById('task').value;
-      var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-      for (let i=0;i<todoTable.length;i++)
-      {
-        if (todoTable[i].id==id)
-        {
-          todoTable[i].etat="InReview";
-        }
-      }
-      localStorage.setItem('tasks', JSON.stringify(todoTable));
-      displayTask()
-     }     
-     
-     function allowDrop(ev) {
-      ev.preventDefault();
-    }
-    
-    function drag(ev) {
-      ev.dataTransfer.setData("text", ev.target.id);
-      console.log (ev.target.id)
-    }
-    
-    function drop(ev,) {
-      ev.preventDefault();
-      var data = ev.dataTransfer.getData("text");
-      console.log (ev.dataTransfer.getData("text"));
-
-      ev.target.appendChild(document.getElementById(data));
-      
-    }
-
-//
-function moveDone(id) {
-  var task = document.getElementById('task').value;
-  var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-  for (let i = 0; i < todoTable.length; i++) {
-    if (todoTable[i].id == id) {
-      todoTable[i].etat = "done";
-    }
-  }
-  localStorage.setItem('tasks', JSON.stringify(todoTable));
-  displayTask();
-}
-function moveDone(id) {
-  var task = document.getElementById('task').value;
-  var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-  for (let i = 0; i < todoTable.length; i++) {
-    if (todoTable[i].id == id) {
-      todoTable[i].etat = "done";
-    }
-  }
-  localStorage.setItem('tasks', JSON.stringify(todoTable));
-  displayTask()
-}
 function moveInReview(id) {
   var task = document.getElementById('task').value;
   var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -271,29 +211,85 @@ function moveInReview(id) {
   displayTask()
 }
 
-
-
-function displayTask() {
-  var connected = JSON.parse(localStorage.getItem('connected'));
-
-console.log('diplay task');
-console.log((connected.role == "developer"));
-
-
-  if (connected.role == "developer") {
-    document.getElementById('prj').style.display = 'none';
-    document.getElementById('prf').style.display = 'none';
-    document.getElementById('Team').style.display = 'none';
+//
+function moveDone(id) {
+  var task = document.getElementById('task').value;
+  var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+  for (let i = 0; i < todoTable.length; i++) {
+    if (todoTable[i].id == id) {
+      todoTable[i].etat = "done";
+    }
   }
+  localStorage.setItem('tasks', JSON.stringify(todoTable));
+  displayTask()
+}
 
+
+
+function allowDrop(ev) {
+  // console.log(ev);
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+  // console.log(ev.target.id)
+}
+
+function drop(ev, ) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  console.log(ev.dataTransfer.getData("text"));
+
+  ev.target.appendChild(document.getElementById(data));
+  switch (ev.target.id) {
+    case 'tasksInprogress':
+
+      moveInprogress(data)
+      break;
+    case 'tasksInreview':
+
+      moveInReview(data)
+      break;
+    case 'tasksInDone':
+      moveDone(data)
+      break;
+
+
+
+    default:
+      moveBacklog(data)
+      break;
+  }
+  console.log(ev.target.id);
 
 }
 
-function logout(){
+/* function edit user story 
+function Edit(){
+    // Get the modal
+  var modal = document.getElementById("myModal");
   
-  localStorage.removeItem("connected");
-  location.href = "./main-log.html";
-
+  // Get the button that opens the modal
+  var btn = document.getElementById("edit");
   
-}
-
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+  
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  }*/

@@ -28,31 +28,31 @@ body{
 .button-backlog{
   background: transparent;
   box-shadow: none;
-  color: #3366aa;
+  color: rgb(0, 81, 255);
   font-weight: normal;
 }
 .button-review{
   background: transparent;
   box-shadow: none;
-  color:rgb(255,0,255);
+  color:#800000;
   font-weight: normal;
 }
 .button-progress{
   background: transparent;
   box-shadow: none;
-  color:rgb(0, 81, 255);
+  color:	#FFD700;
   font-weight: normal;
 }
 .button-done{
   background: transparent;
   box-shadow: none;
   color: #007b03;
-  font-weight: normal;
+  font-weight: Gras;
 }
 .button-delete{
   background: transparent;
   box-shadow: none;
-  color: #be0000;
+  color:#FF0000;
   font-weight: normal;
 }
 .form > h2{
@@ -122,4 +122,8 @@ body{
   border: 5px dashed #ededed;
   min-height: 100px;
   margin-bottom: 10px;
+}
+.h3{
+  font-weight: Gras;
+  background: darkgreen;
 }
