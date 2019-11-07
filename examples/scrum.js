@@ -27,13 +27,12 @@ function displayTask() {
 
 
 }
-
 function displayBacklog() {
   var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-  var html = `<h3 style=font-weight: bold " ;>SprintBacklog</h3>`;
+  var html = `<h3>Sprint Backlog</h3>`;
   for (let i = 0; i < todoTable.length; i++) {
     if (todoTable[i].etat == "backlog") {
-      // console.log(todoTable);
+      console.log(todoTable);
 
 
       html += ` <div class="input-group overflow" style="background:white;" id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
@@ -53,10 +52,10 @@ function displayBacklog() {
 
 function displayInProgress() {
   var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
-  var html = `<h3 style=font-weight: bold  " ;>InProgress </h3>`;
+  var html = `<h3>In progress </h3>`;
   for (let i = 0; i < todoTable.length; i++) {
     if (todoTable[i].etat == "inProgress") {
-      // console.log(todoTable);
+      console.log(todoTable);
 
       html += `<div class="input-group overflow" style="background:white;"id ="${todoTable[i].id}"  draggable="true" ondragstart="drag(event)">
       <h4 style="font-weight: bold;color:black;">${todoTable[i].task}</h4>
@@ -157,6 +156,17 @@ function deleteTask(id) {
   return false;
 }
 
+function moveInprogress(id) {
+  var task = document.getElementById('task').value;
+  var todoTable = JSON.parse(localStorage.getItem('tasks')) || [];
+  for (let i = 0; i < todoTable.length; i++) {
+    if (todoTable[i].id == id) {
+      todoTable[i].etat = "inProgress";
+    }
+  }
+  localStorage.setItem('tasks', JSON.stringify(todoTable));
+  displayTask()
+}
 
 
 //var conf = confirm("Is This goodbye");
