@@ -75,129 +75,133 @@
         </div>
       </nav>
       <!-- End Navbar -->
+ <!-- add team  
+                          display list of developers and choose from it to create a team
+                          we add the details of affecting a team to a certain project  
+                        -->
+                        <div class="content" id="divAddTeam">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                  <div class="card-header card-header-tabs card-header-primary">
+                                    <div class="nav-tabs-navigation">
+                                      <div class="nav-tabs-wrapper">
+                                        <span class="nav-tabs-title"></span>
+                                        <ul class="nav nav-tabs" data-tabs="tabs">
+                                          <li class="nav-item">
+                                            <a class="nav-link " href="#profile" data-toggle="tab">
+                                              <i class="material-icons">code</i> Developers
+                                              <div class="ripple-container"></div>
+                                            </a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="tab-content">
+                                      <div class="tab-pane active">
+                                        <table class="table" id="developerList">
+                  
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                  
+                                  <div class="card-header card-header-tabs card-header-primary">
+                                    <div class="nav-tabs-navigation">
+                                      <div class="nav-tabs-wrapper">
+                                        <span class="nav-tabs-title"> </span>
+                                        <ul class="nav nav-tabs" data-tabs="tabs">
+                                          <li class="nav-item">
+                                            <a class="nav-link" href="#messages" data-toggle="tab">
+                                              <i class="material-icons">color_lens</i> Designers
+                                              <div class="ripple-container"></div>
+                                            </a>
+                  
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                  
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="tab-content">
+                                      <div class="tab-pane active">
+                                        <table class="table" id="designerList">
+                  
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                  
+                              <div class="col-lg-4 col-md-12">
+                                <div class="card">
+                                  <div class="card-header card-header-tabs card-header-primary">
+                                    <div class="nav-tabs-navigation">
+                                      <div class="nav-tabs-wrapper">
+                                        <span class="nav-tabs-title"> </span>
+                                        <ul class="nav nav-tabs" data-tabs="tabs">
+                                          <li class="nav-item">
+                                            <a class="nav-link" href="#settings" data-toggle="tab">
+                                              <i class="material-icons">scatter_plot</i> Other
+                                              <div class="ripple-container"></div>
+                                            </a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-body">
+                                    <div class="tab-content">
+                                      <div class="tab-pane active">
+                                        <table class="table" id="otherList">
+                  
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                  
+                  
+                              <!-- end add team -->
+                            </div>
+                  
+                            <div class="row">
+                              <div>
+                  
+                                <label class="bmd-label-floating">My new team is named</label>
+                                <input type="text" class="form-control" id="teamName">
+                                <button class="btn btn-primary btn-round" type="button" rel="tooltip" onclick="createTeam()">
+                                  Add Team
+                                </button>
+                  
+                  
+                  
+                              </div>
+                            </div>
+                          </div>
+                  
+                        </div>
+
+
+
       <div class="content">
         <div class="container-fluid" id="divDisplayTeam">
         </div>
       </div>
       <!-- end display team list -->
 
-      <!-- add team  
-                          display list of developers and choose from it to create a team
-                          we add the details of affecting a team to a certain project  
-                        -->
-      <div class="content" id="divAddTeam">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-4 col-md-12">
-              <div class="card">
-                <div class="card-header card-header-tabs card-header-primary">
-                  <div class="nav-tabs-navigation">
-                    <div class="nav-tabs-wrapper">
-                      <span class="nav-tabs-title"></span>
-                      <ul class="nav nav-tabs" data-tabs="tabs">
-                        <li class="nav-item">
-                          <a class="nav-link " href="#profile" data-toggle="tab">
-                            <i class="material-icons">code</i> Developers
-                            <div class="ripple-container"></div>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="tab-content">
-                    <div class="tab-pane active">
-                      <table class="table" id="developerList">
-
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-12">
-              <div class="card">
-
-                <div class="card-header card-header-tabs card-header-primary">
-                  <div class="nav-tabs-navigation">
-                    <div class="nav-tabs-wrapper">
-                      <span class="nav-tabs-title"> </span>
-                      <ul class="nav nav-tabs" data-tabs="tabs">
-                        <li class="nav-item">
-                          <a class="nav-link" href="#messages" data-toggle="tab">
-                            <i class="material-icons">color_lens</i> Designers
-                            <div class="ripple-container"></div>
-                          </a>
-
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="card-body">
-                  <div class="tab-content">
-                    <div class="tab-pane active">
-                      <table class="table" id="designerList">
-
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-12">
-              <div class="card">
-                <div class="card-header card-header-tabs card-header-primary">
-                  <div class="nav-tabs-navigation">
-                    <div class="nav-tabs-wrapper">
-                      <span class="nav-tabs-title"> </span>
-                      <ul class="nav nav-tabs" data-tabs="tabs">
-                        <li class="nav-item">
-                          <a class="nav-link" href="#settings" data-toggle="tab">
-                            <i class="material-icons">scatter_plot</i> Other
-                            <div class="ripple-container"></div>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="tab-content">
-                    <div class="tab-pane active">
-                      <table class="table" id="otherList">
-
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <!-- end add team -->
-          </div>
-
-          <div class="row">
-            <div>
-
-              <label class="bmd-label-floating">My new team is named</label>
-              <input type="text" class="form-control" id="teamName">
-              <button class="btn btn-primary btn-round" type="button" rel="tooltip" onclick="createTeam()">
-                Add Team
-              </button>
-
-
-
-            </div>
-          </div>
-        </div>
-
-      </div>
+     
     </div>
   </div>
 
