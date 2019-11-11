@@ -275,7 +275,7 @@
                         <div class="form-group">
                           <form>
                             <select id="myForm" class="form-control" multiple></select>
-                            
+
 
                           </form>
                           <p>Press CTRL and click above button to select multiple options at once.</p>
@@ -352,10 +352,10 @@
 
                     </div>
                     <div class="row" id="buttonupdate">
-                      
+
 
                     </div>
-                   
+
 
 
                     <div class="clearfix"></div>
@@ -485,7 +485,7 @@
   <script src="../assets/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../assets/demo/demo.js"></script>
- 
+
   <script>
 
     function editProjectDisplay(idProject) {
@@ -568,9 +568,9 @@
                     `;
         for (let j = 0; j < projects[i].teams.length; j++) {
           for (let k = 0; k < teams.length; k++) {
-           if(projects[i].teams[j]==teams[k].id){
-             tab += `${teams[k].teamName}    `;
-           }
+            if (projects[i].teams[j] == teams[k].id) {
+              tab += `${teams[k].teamName}    `;
+            }
           }
         }
 
@@ -808,26 +808,28 @@
 
     function updateProject(idProject) {
       var projects = JSON.parse(localStorage.getItem('projects'));
-      projectName = document.getElementById("editProjectName").value ;
+      projectName = document.getElementById("editProjectName").value;
       description = document.getElementById("editClient").value;
       client = document.getElementById("editDescription").value;
       startDate = document.getElementById("editTechnology").value;
-      technology =  document.getElementById("editStartDate").value;
-      
-     
+      technology = document.getElementById("editStartDate").value;
+
+
 
 
       for (let i = 0; i < projects.length; i++) {
         console.log("projects[i].idProject  " + projects[i].idProject);
         console.log("idProject  " + idProject);
-        console.log("projects[i].idProject==idProject  " + projects[i].idProject==idProject );
+        console.log("projects[i].idProject==idProject  ", projects[i].idProject == idProject);
 
-        if (projects[i].idProject==idProject) { 
-          projects.splice(i, 1, { "idProject": idProject,  "projectName": projectName, "description": description, "client": client, "startDate": startDate, "technology":technology,});
-
+        if (projects[i].idProject == idProject) {
+          console.log('test');
           
+          projects.splice(i, 1, { "idProject": idProject, "projectName": projectName, "description": description, "client": client, "startDate": startDate, "technology": technology, });
+
+
         }
-        
+
       }
     }
 

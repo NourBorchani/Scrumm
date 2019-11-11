@@ -137,7 +137,7 @@ function deleteTask(id) {
     if (result.value) {
       Swal.fire(
         'Deleted!',
-        'Your file has been deleted.',
+        'User Story has been deleted.',
         'success'
       )
 
